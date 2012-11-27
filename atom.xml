@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Place in My Head]]></title>
+  <link href="http://mdmartin.github.com/atom.xml" rel="self"/>
+  <link href="http://mdmartin.github.com/"/>
+  <updated>2012-11-27T16:11:36+08:00</updated>
+  <id>http://mdmartin.github.com/</id>
+  <author>
+    <name><![CDATA[MA Ding]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+</feed>
