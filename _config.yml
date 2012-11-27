@@ -2,12 +2,12 @@
 #      Main Configs       #
 # ----------------------- #
 
-url: http://yoursite.com
-title: My Octopress Blog
+url: http://mdmartin.github.com
+title: Place in My Head 
 subtitle: A blogging framework for hackers.
-author: Your Name
+author: MA Ding 
 simple_search: http://google.com/search
-description:
+description: MA Ding's personal blog.
 
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
