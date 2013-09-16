@@ -5,11 +5,21 @@
   <title>CoffeeVis</title>
   <script src='lib/d3.v3.js'></script>
   <script src='js/coffee.js'></script>
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
   <style>
     /*Define axis style here*/
   </style>
 </head>
 <body onload="init()"> <!-- init() method defined in coffee.js-->
+
+<script>
+	d3.csv('./a3-CoffeeData.csv', init)
+
+	function init(drinks) {
+		console.log(drinks);
+	}
+
+</script>
 
 <div style="margin:100;">
   <div style="display: table-cell; width: 100;">
