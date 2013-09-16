@@ -10,10 +10,10 @@
     /*Define axis style here*/
   </style>
 </head>
-<body onload="init()"> <!-- init() method defined in coffee.js-->
+<body> <!-- init() method defined in coffee.js-->
 
 <script>
-	d3.csv('./a3-CoffeeData.csv', init)
+	d3.csv('./a3-CoffeeData.csv', init);
 
 	function init(drinks) {
 		console.log(drinks);
