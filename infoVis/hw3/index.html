@@ -1,0 +1,57 @@
+<html >
+<head>
+  <meta charset="UTF-8">
+  <title>CoffeeVis</title>
+  <script src='d3.v3.js'></script>
+  <script src='coffee.js'></script>
+  <style>
+    .xAxis
+    {
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+    }
+    .xAxis text 
+            {
+                font-family: Arial;
+                font-size: 15px;
+                fill: black;
+            }
+    .yAxis{
+      fill: none;
+      stroke: black;
+      shape-rendering: crispEdges;
+    }
+
+    .yAxis text 
+            {
+                font-family: Arial;
+                font-size: 12px;
+                fill: black;
+            }
+  </style>
+</head>
+<body onload="init()"> <!-- init() method defined in coffee.js-->
+
+<div style="margin:70;">
+  <div style="display: table-cell; width: 100;">
+    <label for="xdropdown">X: </label><select id="xdropdown">
+      <option val="sales">sales</option>
+      <option val="profit">profit</option>
+    </select>
+  </div>
+  <div style="display: table-cell; width: 150;">
+    <label for="ydropdown">Y: </label><select id="ydropdown">
+      <option val="region">region</option>
+      <option val="category">category</option>
+    </select>
+  </div>
+  <div style="display: table-cell; width: 150;">
+    <button id="update" onclick="updateClicked()">Update</button>
+  </div>
+</div>
+
+<div id="vis"></div>
+
+</body>
+</html>

@@ -5,6 +5,10 @@ var width = 600;
 d3.csv('./a3-CoffeeData.csv')
 
 function init(drinks) {
+	
+	drinks.forEach(function(d)) {
+		d.price = +d.price;
+	}
 	console.log(drinks[0].name)
 
 
