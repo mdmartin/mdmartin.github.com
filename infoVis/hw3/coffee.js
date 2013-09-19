@@ -12,7 +12,7 @@ function init(data){
 
 	
   	var chart;
-	margin = {top: 15, right: 80, bottom: 30, left: 80},
+	margin = {top:20, right: 80, bottom: 30, left: 80},
 	    	width = 700 - margin.left - margin.right,
 	    	height = 450 - margin.top - margin.bottom;
 	//DEFINE YOUR VARIABLES UP HERE
@@ -25,6 +25,8 @@ function init(data){
 					.append("svg")
 					.attr("width", width + margin.left + margin.right)
 					.attr("height", height + margin.top + margin.bottom);
+
+	
 
 }
 
@@ -40,7 +42,7 @@ function update(rawdata){
  	var xSelection = getXSelectedOption();
  	var ySelection = getYSelectedOption();
 
- 	console.log(ySelection);
+ 	// console.log(ySelection);
 
  	var sumData = d3.nest()
   				.key(function(d) {return d[ySelection]})
@@ -76,9 +78,16 @@ function update(rawdata){
   	svg.append("g")
   		.attr("class", "yAxis")
   		.attr("transform", "translate(" + margin.left + ", "+ margin.top +")")
-  		.call(yAxis);
+  		.call(yAxis)
+  		.append("text")
+		.attr("transform", "rotate(-90)")
+		.attr("y", "20")
+		.attr("x", "-60")
+		.text("CoffeeVis")
+		.attr("font-family", "helvetica")
+		.attr("font-size", "15px");;
 
-  	console.log(dataSet);
+  	// console.log(dataSet);
 
   	if (first == 1) {
   		first = 0;
@@ -98,7 +107,14 @@ function update(rawdata){
 	  		})
 	  		.attr("width", x.rangeBand())
 	  		.attr("fill", function(d, i) {
-	  			return "rgb(100,100,"+i*50+")";
+	  			return "rgb(0,0,"+(i+1)*50+")";
+	  		})
+	  		.attr("opacity", 0.7)
+	  		.on("mouseover", function(d) {
+	  			d3.select(this).attr("opacity", 1);
+	  		})
+	  		.on("mouseout", function(d) {
+	  			d3.select(this).attr("opacity", 0.7);
 	  		});
 	  	}
 	  else {
@@ -114,7 +130,8 @@ function update(rawdata){
 	  		})
 	  		.attr("height", function(d) {
 	  			return height - y(d);
-	  		});
+	  		})
+	  		.attr("opacity", 0.7);
 	  }
   //
 }
