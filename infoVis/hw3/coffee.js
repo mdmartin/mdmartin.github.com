@@ -3,7 +3,6 @@ var x;
 var y;
 var svg;
 var margin;
-d3.csv("coffee.csv");
 
 var first = 1;
 
@@ -15,7 +14,6 @@ function init(data){
 	margin = {top:20, right: 80, bottom: 30, left: 80},
 	    	width = 700 - margin.left - margin.right,
 	    	height = 450 - margin.top - margin.bottom;
-	//DEFINE YOUR VARIABLES UP HERE
 	x = d3.scale.ordinal()
 						.rangeRoundBands([0, width], 0.3);
 	y = d3.scale.linear()
@@ -54,10 +52,47 @@ function update(rawdata){
   				.entries(rawdata);
 
  	var dataSet = [];
- 	for (var i = sumData.length - 1; i >= 0; i--) {
+ 	// for (var i = sumData.length - 1; i >= 0; i--) {
+ 	for (var i = 0; i < sumData.length; i++) {
   		dataSet.push(sumData[i].values);
   	};
   	var dataSize = dataSet.length;
+
+  	var con1 = 0;
+  	for (var i = 0; i < rawdata.length; i++) {
+  		if (rawdata[i].region == "East")
+  		{
+  			con1 += (+rawdata[i].profit);
+  		}
+  	}
+  	console.log(con1);
+
+  	var con2 = 0;
+  	for (var i = 0; i < rawdata.length; i++) {
+  		if (rawdata[i].region == "Central")
+  		{
+  			con2 += (+rawdata[i].sales);
+  		}
+  	}
+  	console.log(con2);
+
+  	var con3 = 0;
+  	for (var i = 0; i < rawdata.length; i++) {
+  		if (rawdata[i].category == "Coffee")
+  		{
+  			con3 += (+rawdata[i].profit);
+  		}
+  	}
+  	console.log(con3);
+
+  	var con4 = 0;
+  	for (var i = 0; i < rawdata.length; i++) {
+  		if (rawdata[i].category == "Tea")
+  		{
+  			con4 += (+rawdata[i].sales);
+  		}
+  	}
+  	console.log(con4);
 
   	x.domain(sumData.map(function(d) {return d.key}));
   	y.domain([0, d3.max(dataSet, function(d) {return d})]);
