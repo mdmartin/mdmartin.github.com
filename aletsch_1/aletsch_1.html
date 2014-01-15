@@ -1,0 +1,157 @@
+<!doctype html>
+<!--Creates a three.js skybox panorama inside of Argon2 (Isotope), Fall-Winter, 2013-2014:
+	Download the channel files for Argon1, Argon2(Isotope), and the browser version together with skybox panels at http://panorama.lcc.gatech.edu/fs/download/aletsch_1.zip
+	-->
+
+
+<html lang="en">
+   <head>
+       <title>Copenhagen May 2012</title>
+       <link rel="stylesheet" href="jslog.css" />
+       <link rel="apple-touch-icon" href="assets/sample_icon_57x57.png" />
+       <meta charset="utf-8"/>
+       <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+       <meta name="arenabled" />
+            
+
+   </head>
+   <body>
+  
+		<script src="http://argon.gatech.edu/argon.js"></script>
+        <script>
+ 			var touchX;
+ 			var touchY;
+			var phi = 0;
+			var theta = 0;
+			var lat = 0;
+			var lon = 0;
+			var changed = false;
+			var icount = 0;
+			var sc = new THREE.Object3D();
+
+			
+			//This code to allow the user to scroll with finger does not yet work. User can look around the panorama by moving the iPad
+ 			
+			function onDocumentTouchStart( event ) {
+
+				event.preventDefault();
+				var touch = event.touches[ 0 ];
+
+				touchX = touch.screenX;
+				touchY = touch.screenY;
+			}
+
+			function onDocumentTouchMove( event ) {
+
+				event.preventDefault();
+
+				var touch = event.touches[ 0 ];
+
+				lon -= ( touch.screenX - touchX ) * 0.1;
+				lat += ( touch.screenY - touchY ) * 0.1;
+
+				touchX = touch.screenX;
+				touchY = touch.screenY;
+				changed = true;
+			}
+			
+     		var target = new THREE.Vector3();
+
+     	 	var app = {
+    	 		onRender: function (time) {
+    	 			icount += 1;
+				 	// check for position if threshold surpassed
+				 	if (changed) {
+						phi = THREE.Math.degToRad( 90 - lat );
+						theta = THREE.Math.degToRad( lon );
+						
+						target.x = Math.sin( phi ) * Math.cos( theta );
+						target.y = Math.cos( phi );
+						target.z = Math.sin( phi ) * Math.sin( theta );
+		
+						sc.rotation.copy(target);
+						/* ARGON.threeCamera.lookAt( target );						*/
+						icount = 0;
+						changed = false;
+						} //THRESHOLD
+					}  //onRender		    	 	
+    	 	};
+
+       
+       
+           var myAppController =
+           {   
+               geoSpot : null,
+
+               onArgonReady : function()
+               {
+               	var element;
+               	var side;
+               	var object1;
+ 
+               	
+				var sides1 = [
+					{
+						url: 'aletsch_1.0001.png',
+						position: new THREE.Vector3( -512, 0, 0 ),
+						rotation: new THREE.Euler( 0, Math.PI / 2, 0 )
+					},
+					{
+						url: 'aletsch_1.0003.png',
+						position: new THREE.Vector3 ( 512, 0, 0 ),
+						rotation: new THREE.Euler ( 0, -Math.PI / 2, 0 )
+					},
+					{
+						url: 'aletsch_1.0005.png',
+						position: new THREE.Vector3 ( 0,  -512, 0 ),
+						rotation: new THREE.Euler ( -Math.PI/2, 0, Math.PI )
+					},
+					{
+						url: 'aletsch_1.0004.png',
+						position: new THREE.Vector3 ( 0, 512, 0 ),
+						rotation: new THREE.Euler ( Math.PI/2 , 0, Math.PI)
+					},
+					{
+						url: 'aletsch_1.0000.png',
+						position: new THREE.Vector3 ( 0, 0,  512 ),
+						rotation: new THREE.Euler ( 0, Math.PI, 0 )
+					},
+					{
+						url: 'aletsch_1.0002.png',
+						position: new THREE.Vector3 ( 0, 0, -512 ),
+						rotation: new THREE.Euler ( 0, 0, 0 )
+					}
+				];
+				
+				sc.scale.set(10.0, 10.0, 10.0);
+
+				for ( var i = 0; i < sides1.length; i ++ ) {
+
+					var side = sides1[ i ];
+
+					var element = document.createElement( 'img' );
+					element.width = 1026; // 2 pixels extra to close the gap.
+					element.src = side.url;  //this loads the image
+
+					object1 = new THREE.CSS3DObject( element );
+					object1.position = side.position;
+					object1.rotation.copy(side.rotation);
+					sc.add(object1);
+				}	
+				//Now add the whole scene object to the Argon world.
+					ARGON.World.add( sc );
+ 					ARGON.threeCamera.fov = 75;
+ 				 	ARGON.onRender = app.onRender; 
+               }
+    
+           };
+
+		document.addEventListener("AR.ArgonReadyEvent", myAppController.onArgonReady);
+		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+
+       </script>      
+       
+       
+   </body>
+</html>

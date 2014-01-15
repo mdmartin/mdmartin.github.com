@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document>
+	
+	<PhotoOverlay id="geospot_panorama">
+		<Name>aletsch_1</Name>
+        <description><![CDATA[
+        <script language="text/javascript">
+		function geospot_panorama_init()
+		{
+			setTimeout(function(){setGeoSpot('geospot_panorama')}, 0);
+			$('#geospot_panorama_div').bind('click',function(event) {event.stopPropagation(); setGeoSpot('geospot_panorama');});
+			console.log("geospot_panorama initialized");
+		}
+		function setGeoSpot(featureId)
+		{
+			var myFeature = KHARMA.getKMLElementById(featureId);
+			if (myFeature)
+			{
+				myFeature.flyToBalloon(0);
+				console.log("setting geoSpot " + featureId);
+			}
+		}
+        </script>
+		
+		<div id=geospot_panorama_div>Centenial Park Fountain of Rings GeoSpot example</div>
+        ]]>
+		</description>
+		<Camera> 
+			<longitude>-84.39286</longitude>
+			<latitude>33.75933</latitude>
+			<altitude>0</altitude>
+			<heading>30.0</heading> <!-- panoramas not oriented due north can be adjusted here -->
+			<tilt>0</tilt>
+			<Icon>
+				<href>http://geospot.imtc.gatech.edu/image/03_12_2010_02_29_18_7162_icon.png</href>
+			</Icon>
+		</Camera>
+		<Point>
+			<coordinates>-84.39286,33.75933,0</coordinates>
+		</Point>
+		<Icon> <!-- link to panorama image -->
+			<href>http://panorama.lcc.gatech.edu/fs/download/aletsch_1/aletsch_1.000$[n].png</href> <!-- $[side] resolves to front,rear,left,right,top,bottom (see doc)-->
+		</Icon>
+		<shape>cube</shape> <!-- only cube shaped panoramas are currently supported -->
+	</PhotoOverlay>
+	
+	<!-- KML document description -->
+	<name>Panorama for aletsch_1</name>
+	<Snippet>Example of a PhotoOverlay establishing a panoramic GeoSpot</Snippet>
+	<description><![CDATA[
+		<p>Hello! You can download the panorama with its photos through http://panorama.lcc.gatech.edu/fs/download/aletsch_1.zip</p>
+		]]>
+	</description>        	
+	<styleUrl>#document_style</styleUrl>    
+	<Style id="document_style">
+		<IconStyle>
+			<Icon>
+				<href>http://google-maps-icons.googlecode.com/files/administration.png</href>
+			</Icon>
+		</IconStyle>
+	</Style>
+</Document>
+</kml>
