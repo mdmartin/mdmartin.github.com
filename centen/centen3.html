@@ -26,12 +26,15 @@
 			#cssPlace {
 				opacity: 0.5;
 				/*background-color: #000000;*/
-				font-size: 10;
+				font-size: 10px;
 				color: #ffffff;
+				text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+				font-family: helvetica;
 				width: 180;
 				height: 10;
 				position: absolute;
 			}
+
 		</style>
 		
 	</head>
@@ -205,12 +208,12 @@
 				divAqua.id = "cssPlace";
 				divAqua.style.width = "100px";
 				divAqua.style.height = "20px";
-				divAqua.innerText = "Georgia Aquarium";
+				divAqua.innerHTML = "<a href='http://www.georgiaaquarium.org/' target='_blank'>Georgia Aquarium</a>";
 
 				divCoca.id = "cssPlace";
 				divCoca.style.width = "100px";
 				divCoca.style.height = "20px";
-				divCoca.innerText = "World of Coca Cola";
+				divCoca.innerHTML = "<a href='http://www.worldofcoca-cola.com/' target='_blank'>World of Coca Cola</a>";
 
 				divCNN.id = "cssPlace";
 				divCNN.innerText = "CNN";
@@ -299,7 +302,7 @@
 				cssObjectAqua.height = 12;
 				cssObjectAqua.position.x = 150.0;
 				cssObjectAqua.position.y = 20.0;
-				cssObjectAqua.position.z = -20.0;	
+				cssObjectAqua.position.z = -40.0;	
 				cssObjectAqua.rotation.y = - Math.PI / 2;
 
 				cssObjectCoca.width = 200;
