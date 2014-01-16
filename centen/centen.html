@@ -13,7 +13,33 @@
        <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
        <meta name="arenabled" />
             
+       <style>
+			body {
+				background-color: #FFFFFF;
+				margin: 0;
+				cursor: move;
+				overflow: hidden;
+			}
 
+			a {
+				color: #ffffff;
+			}
+
+			#cssContent {
+				opacity: 0.4;
+				border-radius: 3px;
+			}
+
+			#cssPlace {
+				opacity: 0.5;
+				/*background-color: #000000;*/
+				font-size: 10;
+				color: #ffffff;
+				width: 180;
+				height: 10;
+				position: absolute;
+			}
+		</style>
    </head>
    <body>
   
@@ -174,7 +200,7 @@
 
 				// for Y
 				divYpos.id = "cssContent";
-				divYpos.style.width = "24px";
+				divYpos.style.width = "48px";
 				divYpos.style.height = "16px";
 				divYpos.style.backgroundColor = "blue";
 				divYpos.style.position = 'absolute';
@@ -183,13 +209,13 @@
 				divYpos.innerText = "DOWN";
 
 				divYneg.id = "cssContent";
-				divYneg.style.width = "48px";
+				divYneg.style.width = "24px";
 				divYneg.style.height = "16px";
 				divYneg.style.backgroundColor = "blue";
 				divYneg.style.position = 'absolute';
 				divYneg.style.fontSize = "16px";
 				divYneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
-				divYneg.innerText = "UUUUP";
+				divYneg.innerText = "UP";
 
 				//for Z
 				divZpos.id = "cssContent";
@@ -300,28 +326,28 @@
 				cssObjectCenten.width = 200;
 				cssObjectCenten.height = 12;
 				cssObjectCenten.position.x = 0.0;
-				cssObjectCenten.position.y = 80.0;
+				cssObjectCenten.position.y = - 80.0;
 				cssObjectCenten.position.z = 200.0;	
 				cssObjectCenten.rotation.y = Math.PI + 0.2;
 
 				cssObjectAqua.width = 200;
 				cssObjectAqua.height = 12;
 				cssObjectAqua.position.x = 120.0;
-				cssObjectAqua.position.y = 20.0;
+				cssObjectAqua.position.y = - 20.0;
 				cssObjectAqua.position.z = -20.0;	
 				cssObjectAqua.rotation.y = - Math.PI / 2;
 
 				cssObjectCoca.width = 200;
 				cssObjectCoca.height = 12;
 				cssObjectCoca.position.x = 120.0;
-				cssObjectCoca.position.y = 25.0;
+				cssObjectCoca.position.y = - 25.0;
 				cssObjectCoca.position.z = 80.0;	
 				cssObjectCoca.rotation.y = - Math.PI / 2 - 0.3;
 
 				cssObjectCNN.width = 100;
 				cssObjectCNN.height = 100;
 				cssObjectCNN.position.x = -200.0;
-				cssObjectCNN.position.y = -15.0;
+				cssObjectCNN.position.y = 15.0;
 				cssObjectCNN.position.z = 5.0;				
 				cssObjectCNN.rotation.y =  Math.PI / 2;
 
