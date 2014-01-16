@@ -118,32 +118,32 @@
                	
 				var sides1 = [
 					{
-						url: 'centen.0001.png', // east
+						url: 'centen.0001.png',
 						position: new THREE.Vector3( -512, 0, 0 ),
 						rotation: new THREE.Euler( 0, Math.PI / 2, 0 )
 					},
 					{
-						url: 'centen.0003.png', // west
+						url: 'centen.0003.png',
 						position: new THREE.Vector3 ( 512, 0, 0 ),
 						rotation: new THREE.Euler ( 0, -Math.PI / 2, 0 )
 					},
 					{
-						url: 'centen.0005.png', // down
+						url: 'centen.0005.png',
 						position: new THREE.Vector3 ( 0,  -512, 0 ),
 						rotation: new THREE.Euler ( -Math.PI/2, 0, Math.PI )
 					},
 					{
-						url: 'centen.0004.png', // up
+						url: 'centen.0004.png',
 						position: new THREE.Vector3 ( 0, 512, 0 ),
 						rotation: new THREE.Euler ( Math.PI/2 , 0, Math.PI)
 					},
 					{
-						url: 'centen.0000.png', // north
+						url: 'centen.0000.png',
 						position: new THREE.Vector3 ( 0, 0,  512 ),
 						rotation: new THREE.Euler ( 0, Math.PI, 0 )
 					},
 					{
-						url: 'centen.0002.png', // south
+						url: 'centen.0002.png',
 						position: new THREE.Vector3 ( 0, 0, -512 ),
 						rotation: new THREE.Euler ( 0, 0, 0 )
 					}
@@ -187,7 +187,7 @@
 				divXpos.style.position = 'absolute';
 				divXpos.style.fontSize = "16px";
 				divXpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
-				divXpos.innerText = "WEST";
+				divXpos.innerText = "NORTH";
 
 				divXneg.id = "cssContent";
 				divXneg.style.width = "60px";
@@ -196,7 +196,7 @@
 				divXneg.style.position = 'absolute';
 				divXneg.style.fontSize = "16px";
 				divXneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
-				divXneg.innerText = "EAST";
+				divXneg.innerText = "SOUTH";
 
 				// for Y
 				divYpos.id = "cssContent";
@@ -225,7 +225,7 @@
 				divZpos.style.position = 'absolute';
 				divZpos.style.fontSize = "16px";
 				divZpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
-				divZpos.innerText = "NORTH";
+				divZpos.innerText = "EAST";
 
 				divZneg.id = "cssContent";
 				divZneg.style.width = "48px";
@@ -234,7 +234,7 @@
 				divZneg.style.position = 'absolute';
 				divZneg.style.fontSize = "16px";
 				divZneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
-				divZneg.innerText = "SOUTH";
+				divZneg.innerText = "West";
 
 				divCenten.id = "cssPlace";
 				divCenten.innerText = "Centenial Olympic Park";
@@ -341,7 +341,7 @@
 
 				cssObjectCoca.width = 200;
 				cssObjectCoca.height = 12;
-				cssObjectCoca.position.x = 150.0;
+				cssObjectCoca.position.x = 120.0;
 				cssObjectCoca.position.y = - 25.0;
 				cssObjectCoca.position.z = 80.0;	
 				cssObjectCoca.rotation.y = - Math.PI / 2 - 0.3;
