@@ -1,0 +1,126 @@
+<!doctype html>
+<!--Creates a three.js skybox panorama inside of Argon2 (Isotope), Fall-Winter, 2013-2014:
+	Download the channel files for Argon1, Argon2(Isotope), and the browser version together with skybox panels at http://panorama.lcc.gatech.edu/fs/download/centen.zip
+	-->
+
+
+<html lang="en">
+   <head>
+       <title>Copenhagen May 2012</title>
+       <link rel="stylesheet" href="jslog.css" />
+       <link rel="apple-touch-icon" href="assets/sample_icon_57x57.png" />
+       <meta charset="utf-8"/>
+       <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+       <meta name="arenabled" />
+            
+       <style>
+			body {
+				background-color: #FFFFFF;
+				margin: 0;
+				cursor: move;
+				overflow: hidden;
+			}
+
+			a {
+				color: #ffffff;
+			}
+
+			#cssContent {
+				opacity: 0.4;
+				border-radius: 3px;
+			}
+
+			#cssPlace {
+				opacity: 0.5;
+				/*background-color: #000000;*/
+				font-size: 10;
+				color: #ffffff;
+				width: 180;
+				height: 10;
+				position: absolute;
+			}
+		</style>
+   </head>
+   <body>
+  
+		<script src="http://argon.gatech.edu/argon.js"></script>
+        <script>
+ 			var touchX;
+ 			var touchY;
+			var phi = 0;
+			var theta = 0;
+			var lat = 0;
+			var lon = 0;
+			var changed = false;
+			var icount = 0;
+			var sc = new THREE.Object3D();
+
+			
+			//This code to allow the user to scroll with finger does not yet work. User can look around the panorama by moving the iPad
+ 			
+			function onDocumentTouchStart( event ) {
+
+				event.preventDefault();
+				var touch = event.touches[ 0 ];
+
+				touchX = touch.screenX;
+				touchY = touch.screenY;
+			}
+
+			function onDocumentTouchMove( event ) {
+
+				event.preventDefault();
+
+				var touch = event.touches[ 0 ];
+
+				lon -= ( touch.screenX - touchX ) * 0.1;
+				lat += ( touch.screenY - touchY ) * 0.1;
+
+				touchX = touch.screenX;
+				touchY = touch.screenY;
+				changed = true;
+			}
+			
+     		var target = new THREE.Vector3();
+
+     	 	var app = {
+    	 		onRender: function (time) {
+    	 			icount += 1;
+				 	// check for position if threshold surpassed
+				 	if (changed) {
+						phi = THREE.Math.degToRad( 90 - lat );
+						theta = THREE.Math.degToRad( lon );
+						
+						target.x = Math.sin( phi ) * Math.cos( theta );
+						target.y = Math.cos( phi );
+						target.z = Math.sin( phi ) * Math.sin( theta );
+		
+						sc.rotation.copy(target);
+						/* ARGON.threeCamera.lookAt( target );						*/
+						icount = 0;
+						changed = false;
+						} //THRESHOLD
+					}  //onRender		    	 	
+    	 	};
+
+       
+       
+            var myAppController =
+            {   
+                geoSpot : null,
+
+                onArgonReady : function()
+                {
+
+				}
+            };
+
+		document.addEventListener("AR.ArgonReadyEvent", myAppController.onArgonReady);
+		document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+		document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+
+       </script>      
+       
+       
+   </body>
+</html>
