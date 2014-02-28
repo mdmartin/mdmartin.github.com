@@ -111,29 +111,235 @@
 
                 onArgonReady : function()
                 {
-                	var divTest = document.createElement('div');
-                	divTest.id = "cssContent";
-					divTest.style.width = "60px";
-					divTest.style.height = "16px";
-					divTest.style.backgroundColor = "red";
-					divTest.style.position = 'absolute';
-					divTest.style.fontSize = "16px";
-					divTest.style.WebkitTransform = "scale3d(-1, 1, 1)";
-					divTest.innerText = "target";
+     //            	var divTest = document.createElement('div');
+     //            	divTest.id = "cssContent";
+					// divTest.style.width = "60px";
+					// divTest.style.height = "16px";
+					// divTest.style.backgroundColor = "red";
+					// divTest.style.position = 'absolute';
+					// divTest.style.fontSize = "16px";
+					// divTest.style.WebkitTransform = "scale3d(-1, 1, 1)";
+					// divTest.innerText = "target";
 
-					var testObject = new THREE.CSS3DObject(divTest);
+					// var testObject = new THREE.CSS3DObject(divTest);
 
-					testObject.width = 100;
-					testObject.height = 100;
-					testObject.position.x = 200.0;
-					testObject.position.y = 0.0;
-					testObject.position.z = 0.0;		
-					testObject.rotation.y = - Math.PI / 2;
+					// testObject.width = 100;
+					// testObject.height = 100;
+					// testObject.position.x = 200.0;
+					// testObject.position.y = 0.0;
+					// testObject.position.z = 0.0;		
+					// testObject.rotation.y = - Math.PI / 2;
 
-					RGON.World.add(testObject);
+					// RGON.World.add(testObject);
+
+					// ARGON.threeCamera.fov = 75;
+				 // 	ARGON.onRender = app.onRender; 
+
+
+				 	var divXpos = document.createElement('div');
+					var divXneg = document.createElement('div');
+					var divYpos = document.createElement('div');
+					var divYneg = document.createElement('div');
+					var divZpos = document.createElement('div');
+					var divZneg = document.createElement('div');
+
+					var divCenten = document.createElement('div');
+					var divAqua = document.createElement('div');
+					var divCoca = document.createElement('div');
+					var divCNN = document.createElement('div');
+
+					// Put content in each one  (should do this as a couple of functions)
+					// for X
+					divXpos.id = "cssContent";
+					divXpos.style.width = "60px";
+					divXpos.style.height = "16px";
+					divXpos.style.backgroundColor = "red";
+					divXpos.style.position = 'absolute';
+					divXpos.style.fontSize = "16px";
+					divXpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
+					divXpos.innerText = "WEST";
+
+					divXneg.id = "cssContent";
+					divXneg.style.width = "60px";
+					divXneg.style.height = "16px";
+					divXneg.style.backgroundColor = "red";
+					divXneg.style.position = 'absolute';
+					divXneg.style.fontSize = "16px";
+					divXneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
+					divXneg.innerText = "EAST";
+
+					// for Y
+					divYpos.id = "cssContent";
+					divYpos.style.width = "60px";
+					divYpos.style.height = "16px";
+					divYpos.style.backgroundColor = "blue";
+					divYpos.style.position = 'absolute';
+					divYpos.style.fontSize = "16px";
+					divYpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
+					divYpos.innerText = "DOWN";
+
+					divYneg.id = "cssContent";
+					divYneg.style.width = "24px";
+					divYneg.style.height = "16px";
+					divYneg.style.backgroundColor = "blue";
+					divYneg.style.position = 'absolute';
+					divYneg.style.fontSize = "16px";
+					divYneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
+					divYneg.innerText = "UP";
+
+					//for Z
+					divZpos.id = "cssContent";
+					divZpos.style.width = "60px";
+					divZpos.style.height = "16px";
+					divZpos.style.backgroundColor = "green";
+					divZpos.style.position = 'absolute';
+					divZpos.style.fontSize = "16px";
+					divZpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
+					divZpos.innerText = "NORTH";
+
+					divZneg.id = "cssContent";
+					divZneg.style.width = "60px";
+					divZneg.style.height = "16px";
+					divZneg.style.backgroundColor = "green";
+					divZneg.style.position = 'absolute';
+					divZneg.style.fontSize = "16px";
+					divZneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
+					divZneg.innerText = "SOUTH";
+
+					divCenten.id = "cssPlace";
+					divCenten.innerHTML = "<a href='http://www.centennialpark.com/' target='_blank'>Centenial Olympic Park</a>";
+
+					divAqua.id = "cssPlace";
+					divAqua.style.width = "100px";
+					divAqua.style.height = "20px";
+					divAqua.innerHTML = "<a href='http://www.georgiaaquarium.org/' target='_blank'>Georgia Aquarium</a>";
+
+					divCoca.id = "cssPlace";
+					divCoca.style.width = "100px";
+					divCoca.style.height = "20px";
+					divCoca.innerHTML = "<a href='http://www.worldofcoca-cola.com/' target='_blank'>World of Coca Cola</a>";
+
+					divCNN.id = "cssPlace";
+					divCNN.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>CNN</a>";
+					
+
+					// create 6 CSS Objects in the scene graph
+					var cssObjectXpos;
+					var cssObjectXneg;
+					var cssObjectYpos;
+					var cssObjectYneg;
+					var cssObjectZpos;
+					var cssObjectZneg;
+
+					var cssObjectCenten;
+					var cssObjectAqua;
+					var cssObjectCoca;
+					var cssObjectCNN;
+
+					cssObjectXpos = new THREE.CSS3DObject(divXpos); 
+					cssObjectXneg = new THREE.CSS3DObject(divXneg);
+					cssObjectYpos = new THREE.CSS3DObject(divYpos); 
+					cssObjectYneg = new THREE.CSS3DObject(divYneg);						   
+					cssObjectZpos = new THREE.CSS3DObject(divZpos); 
+					cssObjectZneg = new THREE.CSS3DObject(divZneg);						   
+					cssObjectCenten = new THREE.CSS3DObject(divCenten);
+					cssObjectAqua = new THREE.CSS3DObject(divAqua);
+					cssObjectCoca = new THREE.CSS3DObject(divCoca);
+					cssObjectCNN = new THREE.CSS3DObject(divCNN);
+
+
+					// the width and height is used to align things.
+					cssObjectXpos.width = 100;
+					cssObjectXpos.height = 100;
+					cssObjectXpos.position.x = 200.0;
+					cssObjectXpos.position.y = 0.0;
+					cssObjectXpos.position.z = 0.0;		
+					cssObjectXpos.rotation.y = - Math.PI / 2;		
+
+					cssObjectXneg.width = 100;
+					cssObjectXneg.height = 100;
+					cssObjectXneg.position.x = -200.0;
+					cssObjectXneg.position.y = 0.0;
+					cssObjectXneg.position.z = 0.0;				
+					cssObjectXneg.rotation.y =  Math.PI / 2;		
+
+					// for Y
+					cssObjectYpos.width = 100;
+					cssObjectYpos.height = 100;
+					cssObjectYpos.position.x = 0.0;
+					cssObjectYpos.position.y = -200.0;
+					cssObjectYpos.position.z = 0.0;				
+					cssObjectYpos.rotation.x =  - Math.PI / 2;				
+
+					cssObjectYneg.width = 100;
+					cssObjectYneg.height = 100;
+					cssObjectYneg.position.x = 0.0;
+					cssObjectYneg.position.y = 200.0;
+					cssObjectYneg.position.z = 0.0;					
+					cssObjectYneg.rotation.x = Math.PI / 2;				
+
+					// for Z					
+					cssObjectZpos.width = 100;
+					cssObjectZpos.height = 100;
+					cssObjectZpos.position.x = 0.0;
+					cssObjectZpos.position.y = 0.0;
+					cssObjectZpos.position.z = 200.0;	
+					cssObjectZpos.rotation.y = Math.PI;			
+
+					cssObjectZneg.width = 100;
+					cssObjectZneg.height = 100;
+					cssObjectZneg.position.x = 0.0;
+					cssObjectZneg.position.y = 0.0;
+					cssObjectZneg.position.z = -200.0;	
+					//no rotation need for this one		
+
+					cssObjectCenten.width = 200;
+					cssObjectCenten.height = 12;
+					cssObjectCenten.position.x = - 200.0;
+					cssObjectCenten.position.y = - 80.0;
+					cssObjectCenten.position.z = 0.0;	
+					cssObjectCenten.rotation.y = Math.PI;
+					cssObjectCenten.rotation.y = Math.PI / 2;
+
+					cssObjectAqua.width = 200;
+					cssObjectAqua.height = 12;
+					cssObjectAqua.position.x = 80.0;
+					cssObjectAqua.position.y = - 20.0;
+					cssObjectAqua.position.z = 150.0;	
+					cssObjectAqua.rotation.y = - Math.PI;
+
+					cssObjectCoca.width = 200;
+					cssObjectCoca.height = 12;
+					cssObjectCoca.position.x = - 80.0;
+					cssObjectCoca.position.y = - 25.0;
+					cssObjectCoca.position.z = 160.0;	
+					cssObjectCoca.rotation.y = - Math.PI;
+
+					cssObjectCNN.width = 100;
+					cssObjectCNN.height = 100;
+					cssObjectCNN.position.x = 5.0;
+					cssObjectCNN.position.y = 15.0;
+					cssObjectCNN.position.z = -200.0;				
+					cssObjectCNN.rotation.y =  0;
+
+					//Now add the whole scene object to the Argon world.
+					ARGON.World.add( sc );
+
+					ARGON.World.add(cssObjectXpos);
+					ARGON.World.add(cssObjectXneg);
+					ARGON.World.add(cssObjectYpos);
+					ARGON.World.add(cssObjectYneg);
+					ARGON.World.add(cssObjectZpos);
+					ARGON.World.add(cssObjectZneg);
+					ARGON.World.add(cssObjectCNN);
+
+					ARGON.World.add(cssObjectCenten);
+					ARGON.World.add(cssObjectAqua);
+					ARGON.World.add(cssObjectCoca);
 
 					ARGON.threeCamera.fov = 75;
 				 	ARGON.onRender = app.onRender; 
+
 				}
             };
 
