@@ -111,7 +111,29 @@
 
                 onArgonReady : function()
                 {
+                	var divTest = document.createElement('div');
+                	divTest.id = "cssContent";
+					divTest.style.width = "60px";
+					divTest.style.height = "16px";
+					divTest.style.backgroundColor = "red";
+					divTest.style.position = 'absolute';
+					divTest.style.fontSize = "16px";
+					divTest.style.WebkitTransform = "scale3d(-1, 1, 1)";
+					divTest.innerText = "target";
 
+					var testObject = new THREE.CSS3DObject(divTest);
+
+					testObject.width = 100;
+					testObject.height = 100;
+					testObject.position.x = 200.0;
+					testObject.position.y = 0.0;
+					testObject.position.z = 0.0;		
+					testObject.rotation.y = - Math.PI / 2;
+
+					RGON.World.add(testObject);
+
+					ARGON.threeCamera.fov = 75;
+				 	ARGON.onRender = app.onRender; 
 				}
             };
 
