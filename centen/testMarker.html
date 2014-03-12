@@ -46,7 +46,7 @@
         <script src="http://argon.gatech.edu/argon.js"></script>
 
         <script>
-            alert("start 1.16");
+            alert("start 1.17");
 
             var touchX;
             var touchY;
@@ -129,7 +129,7 @@
                     var direction = new THREE.Vector3( 0, 0, -1 );
                     // transform the direction into world space
                     
-                    alert(GeoLocation);
+                    alert(ARGON.geolocation);
                     direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
                     alert(direction.x + " " + direction.y + " " + direction.z);
                 }, 5000);
