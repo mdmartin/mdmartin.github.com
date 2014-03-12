@@ -46,7 +46,7 @@
         <script src="http://argon.gatech.edu/argon.js"></script>
 
         <script>
-            alert("start 1.09");
+            alert("start 1.10");
 
             var touchX;
             var touchY;
@@ -129,12 +129,12 @@
                     alert(direction.x + " " + direction.y + " " + direction.z);
 
                     alert(ARGON);
-                    alert(ARGON.camera);
-                    alert(ARGON.camera.matrixWorld);
-                    alert(ARGON.camera.matrixWorld());
+                    alert(ARGON.threeCamera);
+                    alert(ARGON.threeCamera.matrixWorld);
+                    alert(ARGON.threeCamera.matrixWorld());
 
 
-                    direction.applyMatrix4( ARGON.camera.matrixWorld );
+                    direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
                     alert("still working");
                     alert(ARGON.camera.matrixWorld);
                     alert("step one");
