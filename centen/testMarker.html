@@ -44,7 +44,8 @@
                 onArgonReady : function()
                 {
                     myAppController.createContent();
-                    ARGON.loadDataset("http://argon.gatech.edu/demos/StonesAndChips.xml");
+                    setTimeout(function(){alert("Hello")},3000);
+                    // ARGON.loadDataset("http://argon.gatech.edu/demos/StonesAndChips.xml");
                 },
                 
                 onDataSetLoaded : function(event)
