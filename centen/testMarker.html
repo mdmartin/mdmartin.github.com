@@ -173,11 +173,6 @@
                 var divZpos = document.createElement('div');
                 var divZneg = document.createElement('div');
 
-                var divCenten = document.createElement('div');
-                var divAqua = document.createElement('div');
-                var divCoca = document.createElement('div');
-                var divCNN = document.createElement('div');
-
                 // Put content in each one  (should do this as a couple of functions)
                 // for X
                 divXpos.id = "cssContent";
@@ -236,21 +231,7 @@
                 divZneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
                 divZneg.innerText = "SOUTH";
 
-                divCenten.id = "cssPlace";
-                divCenten.innerHTML = "<a href='http://www.centennialpark.com/' target='_blank'>Centenial Olympic Park</a>";
-
-                divAqua.id = "cssPlace";
-                divAqua.style.width = "100px";
-                divAqua.style.height = "20px";
-                divAqua.innerHTML = "<a href='http://www.georgiaaquarium.org/' target='_blank'>Georgia Aquarium</a>";
-
-                divCoca.id = "cssPlace";
-                divCoca.style.width = "100px";
-                divCoca.style.height = "20px";
-                divCoca.innerHTML = "<a href='http://www.worldofcoca-cola.com/' target='_blank'>World of Coca Cola</a>";
-
-                divCNN.id = "cssPlace";
-                divCNN.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>CNN</a>";
+                
                 
 
                 // create 6 CSS Objects in the scene graph
@@ -261,21 +242,13 @@
                 var cssObjectZpos;
                 var cssObjectZneg;
 
-                var cssObjectCenten;
-                var cssObjectAqua;
-                var cssObjectCoca;
-                var cssObjectCNN;
-
                 cssObjectXpos = new THREE.CSS3DObject(divXpos); 
                 cssObjectXneg = new THREE.CSS3DObject(divXneg);
                 cssObjectYpos = new THREE.CSS3DObject(divYpos); 
                 cssObjectYneg = new THREE.CSS3DObject(divYneg);                        
                 cssObjectZpos = new THREE.CSS3DObject(divZpos); 
                 cssObjectZneg = new THREE.CSS3DObject(divZneg);                        
-                cssObjectCenten = new THREE.CSS3DObject(divCenten);
-                cssObjectAqua = new THREE.CSS3DObject(divAqua);
-                cssObjectCoca = new THREE.CSS3DObject(divCoca);
-                cssObjectCNN = new THREE.CSS3DObject(divCNN);
+                
 
 
                 // the width and height is used to align things.
@@ -323,34 +296,7 @@
                 cssObjectZneg.position.z = -200.0;  
                 //no rotation need for this one     
 
-                cssObjectCenten.width = 200;
-                cssObjectCenten.height = 12;
-                cssObjectCenten.position.x = - 200.0;
-                cssObjectCenten.position.y = - 80.0;
-                cssObjectCenten.position.z = 0.0;   
-                cssObjectCenten.rotation.y = Math.PI;
-                cssObjectCenten.rotation.y = Math.PI / 2;
-
-                cssObjectAqua.width = 200;
-                cssObjectAqua.height = 12;
-                cssObjectAqua.position.x = 80.0;
-                cssObjectAqua.position.y = - 20.0;
-                cssObjectAqua.position.z = 150.0;   
-                cssObjectAqua.rotation.y = - Math.PI;
-
-                cssObjectCoca.width = 200;
-                cssObjectCoca.height = 12;
-                cssObjectCoca.position.x = - 80.0;
-                cssObjectCoca.position.y = - 25.0;
-                cssObjectCoca.position.z = 160.0;   
-                cssObjectCoca.rotation.y = - Math.PI;
-
-                cssObjectCNN.width = 100;
-                cssObjectCNN.height = 100;
-                cssObjectCNN.position.x = 5.0;
-                cssObjectCNN.position.y = 15.0;
-                cssObjectCNN.position.z = -200.0;               
-                cssObjectCNN.rotation.y =  0;
+                
 
                 //Now add the whole scene object to the Argon world.
                 ARGON.World.add( sc );
@@ -361,11 +307,6 @@
                 ARGON.World.add(cssObjectYneg);
                 ARGON.World.add(cssObjectZpos);
                 ARGON.World.add(cssObjectZneg);
-                ARGON.World.add(cssObjectCNN);
-
-                ARGON.World.add(cssObjectCenten);
-                ARGON.World.add(cssObjectAqua);
-                ARGON.World.add(cssObjectCoca);
 
                 ARGON.threeCamera.fov = 75;
                 ARGON.onRender = app.onRender; 
