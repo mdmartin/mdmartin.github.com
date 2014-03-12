@@ -121,11 +121,11 @@
 
                 setInterval(function(){
                     alert("3000ms");
-                    // // begin with the local forward direction of the camera
-                    // var direction = new THREE.Vector3( 0, 0, -1 );
-                    // // transform the direction into world space
-                    // direction.applyMatrix4( ARGON.camera.matrixWorld );
-                    // alert("direction: " + direction);
+                    // begin with the local forward direction of the camera
+                    var direction = new THREE.Vector3( 0, 0, -1 );
+                    // transform the direction into world space
+                    direction.applyMatrix4( ARGON.camera.matrixWorld );
+                    alert(direction.x + " " + direction.y + " " + direction.z);
                 }, 3000);
 
                 var sides1 = [
