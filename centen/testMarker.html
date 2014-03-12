@@ -45,7 +45,7 @@
   
         <script src="http://argon.gatech.edu/argon.js"></script>
         <script>
-            alert("start 1.1")
+            alert("start 1.2")
 
             var touchX;
             var touchY;
@@ -120,11 +120,12 @@
                 alert("argon in");
 
                 setInterval(function(){
-                    // begin with the local forward direction of the camera
-                    var direction = new THREE.Vector3( 0, 0, -1 );
-                    // transform the direction into world space
-                    direction.applyMatrix4( ARGON.camera.matrixWorld );
-                    alert("direction: " + direction);
+                    alert("3000ms");
+                    // // begin with the local forward direction of the camera
+                    // var direction = new THREE.Vector3( 0, 0, -1 );
+                    // // transform the direction into world space
+                    // direction.applyMatrix4( ARGON.camera.matrixWorld );
+                    // alert("direction: " + direction);
                 }, 3000);
 
                 var sides1 = [
