@@ -46,7 +46,7 @@
         <script src="http://argon.gatech.edu/argon.js"></script>
 
         <script>
-            alert("start 1.14");
+            alert("start 1.15");
 
             var touchX;
             var touchY;
@@ -74,7 +74,7 @@
             function onDocumentTouchMove( event ) {
 
                 event.preventDefault();
-                alert("touch move");
+                // alert("touch move");
 
                 var touch = event.touches[ 0 ];
 
@@ -93,7 +93,7 @@
                     icount += 1;
                     // check for position if threshold surpassed
                     if (changed) {
-                        alert("what's changed?");
+                        // alert("what's changed?");
                         phi = THREE.Math.degToRad( 90 - lat );
                         theta = THREE.Math.degToRad( lon );
                         
@@ -123,16 +123,16 @@
  
                 alert("argon in");
 
-                // setInterval(function(){
-                //     alert("800ms");
-                //     // begin with the local forward direction of the camera
-                //     var direction = new THREE.Vector3( 0, 0, -1 );
-                //     // transform the direction into world space
+                setInterval(function(){
+                    alert("800ms");
+                    // begin with the local forward direction of the camera
+                    var direction = new THREE.Vector3( 0, 0, -1 );
+                    // transform the direction into world space
                     
-
-                //     direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
-                //     alert(direction.x + " " + direction.y + " " + direction.z);
-                // }, 5000);
+                    alert(ARGON.GeoLocation);
+                    direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
+                    alert(direction.x + " " + direction.y + " " + direction.z);
+                }, 5000);
 
                 var sides1 = [
                     {
