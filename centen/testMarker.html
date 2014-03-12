@@ -118,6 +118,15 @@
                 var object1;
  
                 alert("argon in");
+
+                setInterval(function(){
+                    // begin with the local forward direction of the camera
+                    var direction = new THREE.Vector3( 0, 0, -1 );
+                    // transform the direction into world space
+                    direction.applyMatrix4( ARGON.camera.matrixWorld );
+                    alert("direction: " + direction);
+                }, 3000);
+
                 var sides1 = [
                     {
                         url: 'centen.0000.png',
