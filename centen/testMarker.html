@@ -48,7 +48,7 @@
         <script src="CSS3D61Renderer.js"></script>
 
         <script>
-            alert("start 1.5")
+            alert("start 1.6")
 
             var touchX;
             var touchY;
@@ -127,6 +127,8 @@
                     // begin with the local forward direction of the camera
                     var direction = new THREE.Vector3( 0, 0, -1 );
                     // transform the direction into world space
+                    alert("at least here!");
+                    alert(direction.x + " " + direction.y + " " + direction.z);
                     direction.applyMatrix4( ARGON.camera.matrixWorld );
                     alert("still working");
                     alert(ARGON.camera.matrixWorld);
