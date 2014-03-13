@@ -62,7 +62,7 @@
                 return value2;
             }
 
-            alert("start 1.20");
+            alert("start 1.21");
 
             var desLat = 33.755544;
             var desLon = -84.374529;
@@ -151,7 +151,8 @@
                     var lla = ARGON.geolocation.getLLA();
                     var lat = lla.latitude;
                     var lon = lla.longitude;
-                    alert(lat + " " + lon);
+                    // alert(lat + " " + lon);
+                    alert(calDistance);
                     alert("distance: " + calDistance(lat, lon, desLat, desLon));
                     direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
                     alert(direction.x + " " + direction.y + " " + direction.z);
