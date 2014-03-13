@@ -77,10 +77,13 @@
               return this * 180 / Math.PI;
             };
 
-            alert("start 1.41");
+            alert("start 1.42");
 
             var desLat = 33.755544;
             var desLon = -84.374529; // somewhere on Auburn Ave.
+
+            // var desLat = 51.555197; 
+            // var desLon = -0.108377; // Emirate Stadium in London, UK
 
             var touchX;
             var touchY;
@@ -304,7 +307,7 @@
                     // alert("reletive direction vector: [" + target.x + ", " + target.y + ", " + target.z + "]");
 
                     // divDirectionMarker.style.innerText = '' + relDistance + 'km';
-                    document.getElementById("directionMarker").innerHTML ='' + relDistance + 'km';
+                    document.getElementById("directionMarker").innerHTML ='' + relDistance.toPrecision(3) + 'km';
                     
 
 
