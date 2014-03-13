@@ -47,8 +47,8 @@
 
         <script>
 
-            Number.prototype.toRad = function () { alert("why"); return this * Math.PI / 180; };
             function calDistance(startLat, startLon, desLat, desLon) {
+                alert("in");
                 var R = 6371; // km
                 alert(esLat-startLat)
                 var dLat = (desLat-startLat).toRad();
@@ -62,8 +62,9 @@
                 var value2 = d * 3280.8399;
                 return value2;
             }
+            Number.prototype.toRad = function () { alert("why"); return this * Math.PI / 180; };
 
-            alert("start 1.27");
+            alert("start 1.28");
 
             var desLat = 33.755544;
             var desLon = -84.374529;
