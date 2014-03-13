@@ -77,7 +77,7 @@
               return this * 180 / Math.PI;
             };
 
-            alert("start 1.43");
+            alert("start 1.44");
 
             var desLat = 33.755544;
             var desLon = -84.374529; // somewhere on Auburn Ave.
@@ -307,11 +307,11 @@
                     // alert("reletive direction vector: [" + target.x + ", " + target.y + ", " + target.z + "]");
 
                     // divDirectionMarker.style.innerText = '' + relDistance + 'km';
-                    alert(relDistance.toPrecision(3));
-                    alert(relDistance.toPrecision(3).toString());
-                    document.getElementById("directionMarker").innerHTML ='' + relDistance.toPrecision(3) + 'km';
+                    // alert(relDistance.toPrecision(3));
+                    var disText = relDistance.toPrecision(3).toString()
+                    // document.getElementById("directionMarker").innerHTML ='' + relDistance.toPrecision(3) + 'km';
                     
-
+                    directionMarker.style.innerText = disText + 'km';
 
                     cssDirectionMarker.position.x = target.x * 200;
                     cssDirectionMarker.position.z = target.z * 200;
