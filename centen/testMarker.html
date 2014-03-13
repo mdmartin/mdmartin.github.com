@@ -56,12 +56,25 @@
                         Math.sin(dLon/2) * Math.sin(dLon/2); 
                 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
                 var d = R * c;
-                var value2 = d * 3280.8399;
-                return value2;
+                // var value2 = d * 3280.8399; ==> feet
+                return d;
             }
-            Number.prototype.toRad = function () { return this * Math.PI / 180; };
 
-            alert("start 1.29");
+            function calBearing(startLat, startLon, desLat, desLon) {
+                var dLat = (desLat-startLat).toRad();
+                var dLon = (desLon-startLon).toRad();  
+                var y = Math.sin(dLon) * Math.cos(desLat);
+                var x = Math.cos(startLat)*Math.sin(desLat) -
+                        Math.sin(startLat)*Math.cos(desLat)*Math.cos(dLon);
+                var brng = Math.atan2(y, x).toBrng();
+            }
+
+            Number.prototype.toRad = function () { return this * Math.PI / 180; };
+            Number.prototype.toBrng = function() {  // convert radians to degrees (as bearing: 0...360)
+              return (this.toDeg()+360) % 360;
+            };
+
+            alert("start 1.30");
 
             var desLat = 33.755544;
             var desLon = -84.374529;
@@ -150,10 +163,12 @@
                     var lla = ARGON.geolocation.getLLA();
                     var lat = lla.latitude;
                     var lon = lla.longitude;
-                    alert(lat + " " + lon);
-                    alert(desLat + " " + desLon);
+                    // alert(lat + " " + lon);
+                    // alert(desLat + " " + desLon);
                     var relDistance = calDistance(lat, lon, desLat, desLon);
                     alert("distance: " + relDistance);
+                    var relBearing = calBearing(lat, lon, desLat, desLon);
+                    alert("bearing: " + relBearing);
                     direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
                     alert(direction.x + " " + direction.y + " " + direction.z);
                 }, 1000);
