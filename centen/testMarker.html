@@ -46,7 +46,24 @@
         <script src="http://argon.gatech.edu/argon.js"></script>
 
         <script>
-            alert("start 1.18");
+
+            function calDistance(startLat, startLon, desLat, desLon) {
+                var R = 6371; // km
+                var dLat = (desLat-startLat).toRad();
+                var dLon = (desLon-startLon).toRad(); 
+                var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
+                        Math.cos(startLat.toRad()) * Math.cos(desLat.toRad()) * 
+                        Math.sin(dLon/2) * Math.sin(dLon/2); 
+                var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+                var d = R * c;
+                var value2 = d * 3280.8399;
+                return value2
+            }
+
+            alert("start 1.19");
+
+            var desLat = 33.755544;
+            var desLon = -84.374529;
 
             var touchX;
             var touchY;
@@ -133,59 +150,12 @@
                     var lat = lla.latitude;
                     var lon = lla.longitude;
                     alert(lat + " " + lon);
+                    alert("distance: " + calDistance(lat, lon, desLat, desLon));
                     direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
                     alert(direction.x + " " + direction.y + " " + direction.z);
                 }, 5000);
-
-                var sides1 = [
-                    {
-                        url: 'centen.0000.png',
-                        position: new THREE.Vector3( -512, 0, 0 ),
-                        rotation: new THREE.Euler( 0, Math.PI / 2, 0 )
-                    },
-                    {
-                        url: 'centen.0002.png',
-                        position: new THREE.Vector3 ( 512, 0, 0 ),
-                        rotation: new THREE.Euler ( 0, -Math.PI / 2, 0 )
-                    },
-                    {
-                        url: 'centen.0005.png',
-                        position: new THREE.Vector3 ( 0,  -512, 0 ),
-                        rotation: new THREE.Euler ( -Math.PI/2, 0, Math.PI / 2 )
-                    },
-                    {
-                        url: 'centen.0004.png',
-                        position: new THREE.Vector3 ( 0, 512, 0 ),
-                        rotation: new THREE.Euler ( Math.PI/2 , 0, - Math.PI / 2)
-                    },
-                    {
-                        url: 'centen.0003.png',
-                        position: new THREE.Vector3 ( 0, 0,  512 ),
-                        rotation: new THREE.Euler ( 0, Math.PI, 0 )
-                    },
-                    {
-                        url: 'centen.0001.png',
-                        position: new THREE.Vector3 ( 0, 0, -512 ),
-                        rotation: new THREE.Euler ( 0, 0, 0 )
-                    }
-                ];
                 
                 sc.scale.set(10.0, 10.0, 10.0);
-
-                // for ( var i = 0; i < sides1.length; i ++ ) {
-
-                //     var side = sides1[ i ];
-
-                //     var element = document.createElement( 'img' );
-                //     element.width = 1026; // 2 pixels extra to close the gap.
-                //     element.src = side.url;  //this loads the image
-
-                //     object1 = new THREE.CSS3DObject( element );
-                //     object1.position = side.position;
-                //     object1.rotation.copy(side.rotation);
-                //     sc.add(object1);
-                // }
-
 
                 var divXpos = document.createElement('div');
                 var divXneg = document.createElement('div');
