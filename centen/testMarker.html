@@ -66,6 +66,7 @@
                 var y = Math.sin(dLon) * Math.cos(desLat);
                 var x = Math.cos(startLat)*Math.sin(desLat) - Math.sin(startLat)*Math.cos(desLat)*Math.cos(dLon);
                 var brng = Math.atan2(y, x).toBrng();
+                return brng;
             }
 
             Number.prototype.toRad = function () { return this * Math.PI / 180; };
@@ -76,7 +77,7 @@
               return this * 180 / Math.PI;
             };
 
-            alert("start 1.31");
+            alert("start 1.32");
 
             var desLat = 33.755544;
             var desLon = -84.374529;
