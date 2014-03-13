@@ -77,10 +77,10 @@
               return this * 180 / Math.PI;
             };
 
-            alert("start 1.32");
+            alert("start 1.33");
 
             var desLat = 33.755544;
-            var desLon = -84.374529;
+            var desLon = -84.374529; // somewhere on Auburn Ave.
 
             var touchX;
             var touchY;
@@ -157,8 +157,10 @@
  
                 alert("argon in");
 
+                var targetSpot = {x : 0, y : 0, z : 0};
+
                 setInterval(function(){
-                    alert("1000ms");
+                    alert("3000ms");
                     // begin with the local forward direction of the camera
                     var direction = new THREE.Vector3( 0, 0, -1 );
                     // transform the direction into world space
@@ -173,8 +175,33 @@
                     var relBearing = calBearing(lat, lon, desLat, desLon);
                     alert("bearing: " + relBearing);
                     direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
-                    alert(direction.x + " " + direction.y + " " + direction.z);
-                }, 1000);
+                    alert("camera direction: " + direction.x + " " + direction.y + " " + direction.z);
+
+                    // relBearing
+                    // 0 - 90 [0~-1, 0, 1~0]
+                    // 90 - 180 [-1~0, 0, 0~-1]
+                    // 180 - 270 [0~1, 0, -1~0]
+                    // 270 - 360 [1~0, 0, 0~1]
+
+                    var unit = 1.0 / 90;
+                    if (relBearing >=0 && relBearing <= 90) {
+                        target.x = 0 - unit * relBearing;
+                        target.z = 1 - unit * relBearing;
+                    } else if (relBearing > 90 && relBearing <= 180) {
+                        target.x = -1 + unit * (relBearing - 90);
+                        target.z = 0 - unit * (relBearing - 90);
+                    } else if (relBearing > 180 && relBearing <= 270) {
+                        target.x = unit * (relBearing - 180);
+                        target.z = -1 + unit * (relBearing - 180);
+                    } else if (relBearing > 270 && relBearing <= 360) {
+                        target.x = 1 - unit * (relBearing - 270);
+                        target.z = 0 + unit * (relBearing - 270);
+                    } else {
+                        alert("bearing error!");
+                    }
+                    alert("reletive direction vector: [" + target.x + ", " + target.y + ", " + target.z + "]");
+
+                }, 3000);
                 
                 sc.scale.set(10.0, 10.0, 10.0);
 
