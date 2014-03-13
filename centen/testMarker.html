@@ -77,7 +77,7 @@
               return this * 180 / Math.PI;
             };
 
-            alert("start 1.44");
+            alert("start 1.45");
 
             var desLat = 33.755544;
             var desLon = -84.374529; // somewhere on Auburn Ave.
@@ -240,7 +240,7 @@
                 divDirectionMarker.style.fontSize = '15px';
                 divDirectionMarker.style.fontFamily = 'helvetica';
                 divDirectionMarker.style.WebkitTransform = "scale3d(-1, 1, 1)";
-                divDirectionMarker.style.innerText = 'distance';
+                // divDirectionMarker.style.innerText = 'distance';
                 
 
                 // create 6 CSS Objects in the scene graph
@@ -311,7 +311,7 @@
                     var disText = relDistance.toPrecision(3).toString()
                     // document.getElementById("directionMarker").innerHTML ='' + relDistance.toPrecision(3) + 'km';
                     
-                    directionMarker.style.innerText = disText + 'km';
+                    directionMarker.innerText = disText + 'km';
 
                     cssDirectionMarker.position.x = target.x * 200;
                     cssDirectionMarker.position.z = target.z * 200;
