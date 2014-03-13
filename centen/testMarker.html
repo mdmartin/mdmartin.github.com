@@ -309,9 +309,9 @@
                     // divDirectionMarker.style.innerText = '' + relDistance + 'km';
                     // alert(relDistance.toPrecision(3));
                     var disText = relDistance.toPrecision(3).toString()
-                    // document.getElementById("directionMarker").innerHTML ='' + relDistance.toPrecision(3) + 'km';
+                    document.getElementById("directionMarker").innerHTML = relDistance + 'km';
                     
-                    directionMarker.innerText = disText + 'km';
+                    // directionMarker.innerText = disText + 'km';
 
                     cssDirectionMarker.position.x = target.x * 200;
                     cssDirectionMarker.position.z = target.z * 200;
