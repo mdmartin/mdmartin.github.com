@@ -47,7 +47,7 @@
 
         <script>
 
-            Number.prototype.toRad = function () { return this * Math.PI / 180; };
+            Number.prototype.toRad = function () { alert("why"); return this * Math.PI / 180; };
             function calDistance(startLat, startLon, desLat, desLon) {
                 var R = 6371; // km
                 alert(esLat-startLat)
@@ -63,7 +63,7 @@
                 return value2;
             }
 
-            alert("start 1.25");
+            alert("start 1.26");
 
             var desLat = 33.755544;
             var desLon = -84.374529;
@@ -152,7 +152,7 @@
                     var lla = ARGON.geolocation.getLLA();
                     var lat = lla.latitude;
                     var lon = lla.longitude;
-                    // alert(lat + " " + lon);
+                    alert(lat + " " + lon);
                     var relDistance = calDistance(lat, lon, desLat, desLon);
                     alert("distance: " + relDistance);
                     direction.applyMatrix4( ARGON.threeCamera.matrixWorld );
