@@ -47,23 +47,22 @@
 
         <script>
 
+            Number.prototype.toRad = function () { return this * Math.PI / 180; }
             function calDistance(startLat, startLon, desLat, desLon) {
                 var R = 6371; // km
-                alert("step1")
+                alert(esLat-startLat)
                 var dLat = (desLat-startLat).toRad();
                 var dLon = (desLon-startLon).toRad(); 
-                alert("cal-ing");
                 var a = Math.sin(dLat/2) * Math.sin(dLat/2) +
                         Math.cos(startLat.toRad()) * Math.cos(desLat.toRad()) * 
                         Math.sin(dLon/2) * Math.sin(dLon/2); 
                 var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
                 var d = R * c;
                 var value2 = d * 3280.8399;
-                alert("cal result: " + value2);
                 return value2;
             }
 
-            alert("start 1.22");
+            alert("start 1.24");
 
             var desLat = 33.755544;
             var desLon = -84.374529;
