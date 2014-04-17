@@ -43,6 +43,8 @@
 		<script src="CSS3D61Renderer.js"></script>
 		<script>
 
+
+
 			var camera, scene, renderer;
 			var target = new THREE.Vector3();
 
@@ -71,6 +73,14 @@
 						
 			// initiatlize: two sets of pano images
 			function init() {
+				alert('0.01');
+				if (window.DeviceOrientationEvent) {
+				  // your code
+				  window.addEventListener('deviceorientation', capture_orientation, false);
+				} else {
+				  alert('device orientation not supported');
+				  // add fallback code here, as necessary
+				}
 
 				camera = new THREE.PerspectiveCamera( FOV, window.innerWidth / window.innerHeight, 1, 1000 );
 
@@ -424,6 +434,13 @@
 
 			}
 
+			function capture_orientation (event) {
+			 var alpha = event.alpha;
+			 var beta = event.beta;
+			 var gamma = event.gamma;
+			 alert('Orientation - Alpha: '+alpha+', Beta: '+beta+', Gamma: '+gamma);
+			}
+
 			function animate() {
 
 				requestAnimationFrame( animate );
@@ -433,6 +450,7 @@
 				
 				// lat = Math.max( - 85, Math.min( 85, lat ) );
 				// lat += LATINC;
+
 				
 				
 				phi = THREE.Math.degToRad( 90 - lat );
