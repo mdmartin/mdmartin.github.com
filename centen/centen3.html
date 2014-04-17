@@ -72,7 +72,7 @@
 						
 			// initiatlize: two sets of pano images
 			function init() {
-				alert('0.07');
+				alert('0.08');
 				if (window.DeviceOrientationEvent) {
 				  // your code
 				  window.addEventListener('deviceorientation', capture_orientation, false);
@@ -453,8 +453,8 @@
 				// phi = THREE.Math.degToRad( 90 - lat );
 				// theta = THREE.Math.degToRad( lon );
 				
-				phi = THREE.Math.degToRad( 90 - alpha );
-				theta = THREE.Math.degToRad( gamma );
+				phi = THREE.Math.degToRad( 90 - gamma );
+				theta = THREE.Math.degToRad( alpha );
 
 				// phi = beta;
 				// theta = gamma;
