@@ -73,7 +73,7 @@
 						
 			// initiatlize: two sets of pano images
 			function init() {
-				alert('0.01');
+				alert('0.02');
 				if (window.DeviceOrientationEvent) {
 				  // your code
 				  window.addEventListener('deviceorientation', capture_orientation, false);
@@ -459,6 +459,8 @@
 				target.x = Math.sin( phi ) * Math.cos( theta );
 				target.y = Math.cos( phi );
 				target.z = Math.sin( phi ) * Math.sin( theta );
+
+				alert("lookAt: " + target.x + " " + target.y + " " + target.z);
 
 				camera.lookAt( target );
 				// camera.lookAt(new THREE.Vector3(1, 0, 1));
