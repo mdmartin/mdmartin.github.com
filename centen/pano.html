@@ -176,86 +176,21 @@
                 
             }   
 
-
-            var divXpos = document.createElement('div');
-            var divXneg = document.createElement('div');
-            var divYpos = document.createElement('div');
-            var divYneg = document.createElement('div');
-            var divZpos = document.createElement('div');
-            var divZneg = document.createElement('div');
-
             var divCenten = document.createElement('div');
-            var divAqua = document.createElement('div');
+            var divAA = document.createElement('div');
             var divCoca = document.createElement('div');
-            var divCNN = document.createElement('div');
+            var divYMCA = document.createElement('div');
 
-            // Put content in each one  (should do this as a couple of functions)
-            // for X
-            divXpos.id = "cssContent";
-            divXpos.style.width = "60px";
-            divXpos.style.height = "16px";
-            divXpos.style.backgroundColor = "red";
-            divXpos.style.position = 'absolute';
-            divXpos.style.fontSize = "16px";
-            divXpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
-            divXpos.innerText = "NORTH";
-
-            divXneg.id = "cssContent";
-            divXneg.style.width = "60px";
-            divXneg.style.height = "16px";
-            divXneg.style.backgroundColor = "red";
-            divXneg.style.position = 'absolute';
-            divXneg.style.fontSize = "16px";
-            divXneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
-            divXneg.innerText = "SOUTH";
-
-            // for Y
-            divYpos.id = "cssContent";
-            divYpos.style.width = "24px";
-            divYpos.style.height = "16px";
-            divYpos.style.backgroundColor = "blue";
-            divYpos.style.position = 'absolute';
-            divYpos.style.fontSize = "16px";
-            divYpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
-            divYpos.innerText = "UP";
-
-            divYneg.id = "cssContent";
-            divYneg.style.width = "48px";
-            divYneg.style.height = "16px";
-            divYneg.style.backgroundColor = "blue";
-            divYneg.style.position = 'absolute';
-            divYneg.style.fontSize = "16px";
-            divYneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
-            divYneg.innerText = "DOWN";
-
-            //for Z
-            divZpos.id = "cssContent";
-            divZpos.style.width = "48px";
-            divZpos.style.height = "16px";
-            divZpos.style.backgroundColor = "green";
-            divZpos.style.position = 'absolute';
-            divZpos.style.fontSize = "16px";
-            divZpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
-            divZpos.innerText = "EAST";
-
-            divZneg.id = "cssContent";
-            divZneg.style.width = "48px";
-            divZneg.style.height = "16px";
-            divZneg.style.backgroundColor = "green";
-            divZneg.style.position = 'absolute';
-            divZneg.style.fontSize = "16px";
-            divZneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
-            divZneg.innerText = "WEST";
-
+            
             divCenten.id = "cssPlace";
             divCenten.innerHTML = "<a href='http://www.centennialpark.com/' target='_blank'>Centenial Olympic Park</a>";
 
             
 
-            divAqua.id = "divMarker";
-            // divAqua.style.width = "100px";
-            // divAqua.style.height = "20px";
-            divAqua.innerHTML = "<div onclick='static'><a href='#popupAA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/road.png'></img></a></div>";
+            divAA.id = "divMarker";
+            // divAA.style.width = "100px";
+            // divAA.style.height = "20px";
+            divAA.innerHTML = "<div onclick='static'><a href='#popupAA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/road.png'></img></a></div>";
 
 
 
@@ -264,124 +199,44 @@
             divCoca.style.height = "20px";
             divCoca.innerHTML = "<a href='http://www.worldofcoca-cola.com/' target='_blank'>World of Coca Cola</a>";
 
-            divCNN.id = "divMarker";
-            // divCNN.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>CNN</a>";
-            divCNN.innerHTML = "<div onclick='static'><a href='#popupYMCA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/rockhouse.png'></img></a></div>"
+            divYMCA.id = "divMarker";
+            // divYMCA.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>YMCA</a>";
+            divYMCA.innerHTML = "<div onclick='static'><a href='#popupYMCA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/rockhouse.png'></img></a></div>"
             
 
-            // create 6 CSS Objects in the scene graph
-            var cssObjectXpos;
-            var cssObjectXneg;
-            var cssObjectYpos;
-            var cssObjectYneg;
-            var cssObjectZpos;
-            var cssObjectZneg;
+            var cssObjectAA;
+            var cssObjectYMCA;
 
-            var cssObjectCenten;
-            var cssObjectAqua;
-            var cssObjectCoca;
-            var cssObjectCNN;
 
-            cssObjectXpos = new THREE.CSS3DObject(divXpos); 
-            cssObjectXneg = new THREE.CSS3DObject(divXneg);
-            cssObjectYpos = new THREE.CSS3DObject(divYpos); 
-            cssObjectYneg = new THREE.CSS3DObject(divYneg);                        
-            cssObjectZpos = new THREE.CSS3DObject(divZpos); 
-            cssObjectZneg = new THREE.CSS3DObject(divZneg);                        
-            cssObjectCenten = new THREE.CSS3DObject(divCenten);
-            cssObjectAqua = new THREE.CSS3DObject(divAqua);
-            cssObjectCoca = new THREE.CSS3DObject(divCoca);
-            cssObjectCNN = new THREE.CSS3DObject(divCNN);
+            cssObjectAA = new THREE.CSS3DObject(divAA);
+            cssObjectYMCA = new THREE.CSS3DObject(divYMCA);
 
 
             // the width and height is used to align things.
-            cssObjectXpos.width = 100;
-            cssObjectXpos.height = 100;
-            cssObjectXpos.position.x = 200.0;
-            cssObjectXpos.position.y = 0.0;
-            cssObjectXpos.position.z = 0.0;     
-            cssObjectXpos.rotation.y = - Math.PI / 2;       
+            
 
-            cssObjectXneg.width = 100;
-            cssObjectXneg.height = 100;
-            cssObjectXneg.position.x = -200.0;
-            cssObjectXneg.position.y = 0.0;
-            cssObjectXneg.position.z = 0.0;             
-            cssObjectXneg.rotation.y =  Math.PI / 2;        
+            alert('0.64');
 
-            // for Y
-            cssObjectYpos.width = 100;
-            cssObjectYpos.height = 100;
-            cssObjectYpos.position.x = 0.0;
-            cssObjectYpos.position.y = -200.0;
-            cssObjectYpos.position.z = 0.0;             
-            cssObjectYpos.rotation.x =  - Math.PI / 2;              
+            cssObjectAA.width = 200;
+            cssObjectAA.height = 12;
+            cssObjectAA.position.x = 200.0;
+            cssObjectAA.position.y = -25.0;
+            cssObjectAA.position.z = -130.0;   
+            cssObjectAA.rotation.y = - Math.PI / 2 + 0.5;
 
-            cssObjectYneg.width = 100;
-            cssObjectYneg.height = 100;
-            cssObjectYneg.position.x = 0.0;
-            cssObjectYneg.position.y = 200.0;
-            cssObjectYneg.position.z = 0.0;                 
-            cssObjectYneg.rotation.x = Math.PI / 2;             
-
-            // for Z                    
-            cssObjectZpos.width = 100;
-            cssObjectZpos.height = 100;
-            cssObjectZpos.position.x = 0.0;
-            cssObjectZpos.position.y = 0.0;
-            cssObjectZpos.position.z = 200.0;   
-            cssObjectZpos.rotation.y = Math.PI;         
-
-            cssObjectZneg.width = 100;
-            cssObjectZneg.height = 100;
-            cssObjectZneg.position.x = 0.0;
-            cssObjectZneg.position.y = 0.0;
-            cssObjectZneg.position.z = -200.0;  
-            //no rotation need for this one     
-
-            cssObjectCenten.width = 200;
-            cssObjectCenten.height = 12;
-            cssObjectCenten.position.x = -50.0;
-            cssObjectCenten.position.y = 75.0;
-            cssObjectCenten.position.z = 200.0; 
-            cssObjectCenten.rotation.y = Math.PI;
-            cssObjectCenten.rotation.x = 0;
-            cssObjectCenten.rotation.z = 0;
-
-            alert('0.63');
-
-            cssObjectAqua.width = 200;
-            cssObjectAqua.height = 12;
-            cssObjectAqua.position.x = 200.0;
-            cssObjectAqua.position.y = -25.0;
-            cssObjectAqua.position.z = -130.0;   
-            cssObjectAqua.rotation.y = - Math.PI / 2 + 0.5;
-
-            cssObjectCoca.width = 200;
-            cssObjectCoca.height = 12;
-            cssObjectCoca.position.x = 150.0;
-            cssObjectCoca.position.y = 25.0;
-            cssObjectCoca.position.z = 80.0;    
-            cssObjectCoca.rotation.y = - Math.PI / 2 - 0.3;
-
-            cssObjectCNN.width = 100;
-            cssObjectCNN.height = 100;
-            cssObjectCNN.position.x = -200.0;
-            cssObjectCNN.position.y = -15.0;
-            cssObjectCNN.position.z = 5.0;              
-            cssObjectCNN.rotation.y =  Math.PI / 2;
+            cssObjectYMCA.width = 100;
+            cssObjectYMCA.height = 100;
+            cssObjectYMCA.position.x = -200.0;
+            cssObjectYMCA.position.y = -15.0;
+            cssObjectYMCA.position.z = 5.0;              
+            cssObjectYMCA.rotation.y =  Math.PI / 2;
 
 
-            // scene.add(cssObjectXpos);
-            // scene.add(cssObjectXneg);
-            // scene.add(cssObjectYpos);
-            // scene.add(cssObjectYneg);
-            // scene.add(cssObjectZpos);
-            // scene.add(cssObjectZneg);
-            scene.add(cssObjectCNN);
+
+            scene.add(cssObjectYMCA);
 
             // scene.add(cssObjectCenten);
-            scene.add(cssObjectAqua);
+            scene.add(cssObjectAA);
             // scene.add(cssObjectCoca);
 
 
