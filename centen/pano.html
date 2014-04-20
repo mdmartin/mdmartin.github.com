@@ -176,28 +176,25 @@
                 
             }   
 
-            var divCenten = document.createElement('div');
             var divAA = document.createElement('div');
-            var divCoca = document.createElement('div');
             var divYMCA = document.createElement('div');
+            var divYMCAText = document.createElement('div');
 
             
-            divCenten.id = "cssPlace";
-            divCenten.innerHTML = "<a href='http://www.centennialpark.com/' target='_blank'>Centenial Olympic Park</a>";
+            divYMCAText.id = "divMarker";
+            divYMCAText.innerHTML = "<div onclick='static'><a href='#popupYMCAWiki' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/wiki-export.png'></img></a></div>";
 
             
 
             divAA.id = "divMarker";
-            // divAA.style.width = "100px";
-            // divAA.style.height = "20px";
             divAA.innerHTML = "<div onclick='static'><a href='#popupAA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/road.png'></img></a></div>";
 
 
 
-            divCoca.id = "cssPlace";
-            divCoca.style.width = "100px";
-            divCoca.style.height = "20px";
-            divCoca.innerHTML = "<a href='http://www.worldofcoca-cola.com/' target='_blank'>World of Coca Cola</a>";
+            // divCoca.id = "cssPlace";
+            // divCoca.style.width = "100px";
+            // divCoca.style.height = "20px";
+            // divCoca.innerHTML = "<div onclick='static'><a href='#popupYMCAWiki' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/wiki-export.png'></img></a></div>";
 
             divYMCA.id = "divMarker";
             // divYMCA.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>YMCA</a>";
@@ -206,35 +203,43 @@
 
             var cssObjectAA;
             var cssObjectYMCA;
+            var cssObjectYMCAText
 
 
             cssObjectAA = new THREE.CSS3DObject(divAA);
             cssObjectYMCA = new THREE.CSS3DObject(divYMCA);
+            cssObjectYMCAText = new THREE.CSS3DObject(divYMCAText);
 
 
             // the width and height is used to align things.
             
 
-            alert('0.65');
+            alert('0.66');
 
-            cssObjectAA.width = 200;
-            cssObjectAA.height = 12;
+            // cssObjectAA.width = 200;
+            // cssObjectAA.height = 12;
             cssObjectAA.position.x = 200.0;
             cssObjectAA.position.y = -25.0;
             cssObjectAA.position.z = -130.0;   
             cssObjectAA.rotation.y = - Math.PI / 2 + 0.5;
 
-            cssObjectYMCA.width = 100;
-            cssObjectYMCA.height = 100;
+            // cssObjectYMCA.width = 100;
+            // cssObjectYMCA.height = 100;
             cssObjectYMCA.position.x = -200.0;
             cssObjectYMCA.position.y = -15.0;
             cssObjectYMCA.position.z = 5.0;              
             cssObjectYMCA.rotation.y =  Math.PI / 2;
 
 
+            cssObjectYMCAText.position.x = -200.0;
+            cssObjectYMCAText.position.y = 30.0;
+            cssObjectYMCAText.position.z = 5.0;              
+            cssObjectYMCAText.rotation.y =  Math.PI / 2;
+
+
 
             scene.add(cssObjectYMCA);
-
+            scene.add(cssObjectYMCAText)
             // scene.add(cssObjectCenten);
             scene.add(cssObjectAA);
             // scene.add(cssObjectCoca);
@@ -396,6 +401,11 @@
 
                    
     </script>
+
+    <div data-role="popup" id="popupYMCAWiki">
+        <p>This building became a center of social life on the Avenue by providing recreation and supervised activity space for younger blacks and a meeting place for older blacks. Many of Atlanta's young black men belonged to the Y and used it as a recreation center. Vernon Jordon and Martin Luther King, Jr. are leaders influenced as youths by their membership here.The building contains over 10,000 square feet and houses 48 dormatory rooms, 7 class rooms, a small auditorium, a gymnasium, a swimming pool, shower baths, a café and restrooms. It is the only minority YMCA in America that has been allowed to operate independently without being a branch.</p>
+    </div>
+
     <div data-role="popup" id="popupAA">
         <p>This is Auburn Ave. The Sweet Auburn Historic District is a historic African-American neighborhood along and surrounding Auburn Avenue, east of Downtown Atlanta, Georgia, United States. The name Sweet Auburn was coined by John Wesley Dobbs, referring to the "richest Negro street in the world."</p>
     </div>    
