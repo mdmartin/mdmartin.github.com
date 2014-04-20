@@ -52,12 +52,14 @@
     <script>
 
         var isLandScape = 1;
-
+        var alpha, gamma, beta;
         $(document).ready(function() {
             if (Math.abs(window.orientation) === 90) {
                 // Landscape
                 console.log("LANDSCAPE");
                 isLandScape = 1;
+                capture_orientation();
+                alpha = (alpha + 90) % 360;
             } else {
                 // Portrait
                 console.log("PORTRAIT");
@@ -77,7 +79,7 @@
         // $(window).on("orientationchange",function(){
         //   alert("The orientation has changed!");
         // });
-        var alpha, gamma, beta;
+        
         var camera, scene, renderer;
         var target = new THREE.Vector3();
 
@@ -348,7 +350,7 @@
             cssObjectCenten.rotation.x = 0;
             cssObjectCenten.rotation.z = 0;
 
-            alert('0.58');
+            alert('0.60');
 
             cssObjectAqua.width = 200;
             cssObjectAqua.height = 12;
@@ -477,9 +479,9 @@
         }
 
         function capture_orientation (event) {
-         alpha = event.alpha;
-         beta = event.beta;
-         gamma = event.gamma;
+             alpha = event.alpha;
+             beta = event.beta;
+             gamma = event.gamma;
          // alert('Orientation - Alpha: '+alpha+', Beta: '+beta+', Gamma: '+gamma);
         }
 
