@@ -91,7 +91,7 @@
                     
         // initiatlize: two sets of pano images
         function init() {
-            alert('0.30');
+            alert('0.31');
             if (window.DeviceOrientationEvent) {
               // your code
               window.addEventListener('deviceorientation', capture_orientation, false);
@@ -121,12 +121,12 @@
                 {
                     url: 'resources/images/aYMCA_old_timey1.0004.png',
                     position: new THREE.Vector3( 0,  -512, 0 ),
-                    rotation: new THREE.Euler( -Math.PI / 2, 0, 0 )
+                    rotation: new THREE.Euler( -Math.PI / 2, 0, Math.PI / 2 )
                 },
                 {
                     url: 'resources/images/aYMCA_old_timey1.0005.png',
                     position: new THREE.Vector3( 0, 512, 0 ),
-                    rotation: new THREE.Euler( Math.PI / 2, 0, 0 )
+                    rotation: new THREE.Euler( Math.PI / 2, 0, Math.PI / 2 )
                 },
                 {
                     url: 'resources/images/aYMCA_old_timey1.0003.png',
