@@ -44,7 +44,7 @@
 		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script>
 
-			var isLandScape = -1;
+			var isLandScape = 1;
 
 			$(document).ready(function() {
 				screen.lockOrientation('landscape');
@@ -91,7 +91,7 @@
 						
 			// initiatlize: two sets of pano images
 			function init() {
-				alert('0.23');
+				alert('0.24');
 				if (window.DeviceOrientationEvent) {
 				  // your code
 				  window.addEventListener('deviceorientation', capture_orientation, false);
@@ -479,7 +479,7 @@
 					theta = - THREE.Math.degToRad( alpha + 180 );
 				} else {
 					phi = THREE.Math.degToRad( 180 - beta );
-					theta = - THREE.Math.degToRad( alpha + 180 );
+					theta = - THREE.Math.degToRad( gamma + 180 );
 				}
 
 				// phi = beta;
