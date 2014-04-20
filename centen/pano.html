@@ -179,6 +179,7 @@
             var divAA = document.createElement('div');
             var divYMCA = document.createElement('div');
             var divYMCAText = document.createElement('div');
+            div divYMCAOld = document.createElement('div');
 
             
             divYMCAText.id = "divMarker";
@@ -191,10 +192,8 @@
 
 
 
-            // divCoca.id = "cssPlace";
-            // divCoca.style.width = "100px";
-            // divCoca.style.height = "20px";
-            // divCoca.innerHTML = "<div onclick='static'><a href='#popupYMCAWiki' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/wiki-export.png'></img></a></div>";
+            divCoca.id = "divMarker";
+            divCoca.innerHTML = "<div onclick='static'><a href='#popupYMCAOld' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/photo.png'></img></a></div>";
 
             divYMCA.id = "divMarker";
             // divYMCA.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>YMCA</a>";
@@ -203,18 +202,20 @@
 
             var cssObjectAA;
             var cssObjectYMCA;
-            var cssObjectYMCAText
+            var cssObjectYMCAText;
+            var cssObjectYMCAOld;
 
 
             cssObjectAA = new THREE.CSS3DObject(divAA);
             cssObjectYMCA = new THREE.CSS3DObject(divYMCA);
             cssObjectYMCAText = new THREE.CSS3DObject(divYMCAText);
+            cssObjectYMCAOld = new THREE.CSS3DObject(divYMCAOld);
 
 
             // the width and height is used to align things.
             
 
-            alert('0.67');
+            alert('0.68');
 
             // cssObjectAA.width = 200;
             // cssObjectAA.height = 12;
@@ -236,13 +237,16 @@
             cssObjectYMCAText.position.z = 5.0;              
             cssObjectYMCAText.rotation.y =  Math.PI / 2;
 
+            cssObjectYMCAOld.position.x = -50.0;
+            cssObjectYMCAOld.position.y = 0.0;
+            cssObjectYMCAOld.position.z = 5.0;              
+            cssObjectYMCAOld.rotation.y = 0;
 
 
             scene.add(cssObjectYMCA);
             scene.add(cssObjectYMCAText)
-            // scene.add(cssObjectCenten);
             scene.add(cssObjectAA);
-            // scene.add(cssObjectCoca);
+            scene.add(cssObjectYMCAOld)
 
 
             renderer = new THREE.CSS3DRenderer();
@@ -414,8 +418,10 @@
         <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a><img src="./resources/images/ymca.jpg" alt="Photo landscape">
     </div>
 
-    <!-- <div data-role="popup" id="popupPhotoPortrait" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15" >
-        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a><img src="../../_assets/img/photo-portrait.jpg" alt="Photo portrait">
-    </div> -->
+    <div data-role="popup" id="popupYMCAOld" class="photopopup" data-overlay-theme="a" data-corners="false" data-tolerance="30,15" >
+        <a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a><img src="./resources/images/oldYMCA.jpg" alt="Photo landscape">
+    </div>
+
+    
 </body>
 </html>
