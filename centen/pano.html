@@ -332,7 +332,7 @@
         }
 
         function capture_orientation (event) {
-             alpha = (event.alpha + 100) % 360;
+             alpha = (event.alpha) % 360;
              beta = event.beta;
              gamma = event.gamma;
          // alert('Orientation - Alpha: '+alpha+', Beta: '+beta+', Gamma: '+gamma);
