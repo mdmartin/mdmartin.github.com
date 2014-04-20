@@ -66,6 +66,15 @@
             }
         })
 
+        $( document ).on( "pageinit", function() {
+            $( ".photopopup" ).on({
+                popupbeforeposition: function() {
+                    var maxHeight = $( window ).height() - 100 + "px";
+                    $( ".photopopup img" ).css( "max-height", maxHeight );
+                }
+            });
+        });
+
         // $(window).on("orientationchange",function(){
         //   alert("The orientation has changed!");
         // });
@@ -247,7 +256,7 @@
             divAqua.id = "divMarker";
             // divAqua.style.width = "100px";
             // divAqua.style.height = "20px";
-            divAqua.innerHTML = "<a href='#popupAA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/road.png'></img></a>";
+            divAqua.innerHTML = "<div onclick='static()'><a href='#popupAA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/road.png'></img></a></div>";
 
 
 
@@ -258,7 +267,7 @@
 
             divCNN.id = "divMarker";
             // divCNN.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>CNN</a>";
-            divCNN.innerHTML = "<a href='#popupYMCA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/rockhouse.png'></img></a>"
+            divCNN.innerHTML = "<div onclick='static()'><a href='#popupYMCA' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/rockhouse.png'></img></a></div>"
             
 
             // create 6 CSS Objects in the scene graph
@@ -340,7 +349,7 @@
             cssObjectCenten.rotation.x = 0;
             cssObjectCenten.rotation.z = 0;
 
-            alert('0.53');
+            alert('0.54');
 
             cssObjectAqua.width = 200;
             cssObjectAqua.height = 12;
@@ -527,6 +536,9 @@
             }
         }
 
+        function static(e) {
+            console.log(e);
+        }
 
                    
     </script>
