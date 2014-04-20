@@ -95,7 +95,7 @@
                     
         // initiatlize: two sets of pano images
         function init() {
-            alert('0.34');
+            
             if (window.DeviceOrientationEvent) {
               // your code
               window.addEventListener('deviceorientation', capture_orientation, false);
@@ -333,11 +333,13 @@
             cssObjectCenten.rotation.x = 0;
             cssObjectCenten.rotation.z = 0;
 
+            alert('0.35');
+
             cssObjectAqua.width = 200;
             cssObjectAqua.height = 12;
             cssObjectAqua.position.x = 220.0;
             cssObjectAqua.position.y = -10.0;
-            cssObjectAqua.position.z = -50.0;   
+            cssObjectAqua.position.z = -80.0;   
             cssObjectAqua.rotation.y = - Math.PI / 2;
 
             cssObjectCoca.width = 200;
