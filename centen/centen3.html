@@ -48,6 +48,15 @@
 
 			$(document).ready(function() {
 				screen.lockOrientation('landscape');
+				if (Math.abs(window.orientation) === 90) {
+			        // Landscape
+			        console.log("LANDSCAPE");
+			        isLandScape = 1;
+			    } else {
+			    	// Portrait
+			    	console.log("PORTRAIT");
+			    	isLandScape = 0;
+			    }
 			})
 
 			// $(window).on("orientationchange",function(){
@@ -82,7 +91,7 @@
 						
 			// initiatlize: two sets of pano images
 			function init() {
-				alert('0.22');
+				alert('0.23');
 				if (window.DeviceOrientationEvent) {
 				  // your code
 				  window.addEventListener('deviceorientation', capture_orientation, false);
