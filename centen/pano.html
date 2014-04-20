@@ -9,53 +9,513 @@
          * It is recommended to keep this as minimal as possible to provide instant feedback
          * while other resources are still being loaded for the first time
          */
-        html, body {
-            height: 100%;
-            background-color: #1985D0
-        }
-
-        #appLoadingIndicator {
-            position: absolute;
-            top: 50%;
-            margin-top: -15px;
-            text-align: center;
-            width: 100%;
-            height: 30px;
-            -webkit-animation-name: appLoadingIndicator;
-            -webkit-animation-duration: 0.5s;
-            -webkit-animation-iteration-count: infinite;
-            -webkit-animation-direction: linear;
-        }
-
-        #appLoadingIndicator > * {
-            background-color: #FFFFFF;
-            display: inline-block;
-            height: 30px;
-            -webkit-border-radius: 15px;
-            margin: 0 5px;
-            width: 30px;
-            opacity: 0.8;
-        }
-
-        @-webkit-keyframes appLoadingIndicator{
-            0% {
-                opacity: 0.8
+         body {
+                background-color: #FFFFFF;
+                margin: 0;
+                cursor: move;
+                overflow: hidden;
             }
-            50% {
-                opacity: 0
+
+            a {
+                color: #ffffff;
             }
-            100% {
-                opacity: 0.8
+
+            #cssContent {
+                opacity: 0.4;
+                border-radius: 3px;
             }
-        }
+
+            #cssPlace {
+                opacity: 0.5;
+                /*background-color: #000000;*/
+                font-size: 10px;
+                color: #ffffff;
+                text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+                font-family: helvetica;
+                width: 180;
+                height: 10;
+                position: absolute;
+            }
     </style>
-	<script src="script/three61.min.js"></script>
-		<script src="three61.min.js"></script>
-        <script src="CSS3D61Renderer.js"></script>
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="pano1.js"></script>
 </head>
-<body>
-    
+<body onload="startExperience()">
+    <script src="three61.min.js"></script>
+    <script src="CSS3D61Renderer.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+
+        var isLandScape = 1;
+
+        $(document).ready(function() {
+            screen.lockOrientation('landscape');
+            if (Math.abs(window.orientation) === 90) {
+                // Landscape
+                console.log("LANDSCAPE");
+                isLandScape = 1;
+            } else {
+                // Portrait
+                console.log("PORTRAIT");
+                isLandScape = 0;
+            }
+        })
+
+        // $(window).on("orientationchange",function(){
+        //   alert("The orientation has changed!");
+        // });
+        var alpha, gamma, beta;
+        var camera, scene, renderer;
+        var target = new THREE.Vector3();
+
+        // change these to control the start position and rotation of camera
+        var CAMERASTART = 0;      // or 90, 180, 270
+        var DEGREEINC = .1;       //rate of horizontal rotation of camera
+        var LATINC = 0; //vertical rotation of camera
+        var FOV = 75;  // camera field of view
+        
+        // another method of calculating rotation; not used now
+        var degreecount = 0;    //counter for rotation of camera
+        var lon = CAMERASTART; //horizontal pos of camera
+        var lat = 0;  // vertical pos of camera 
+        var phi = 0, theta = 0;
+        var elements = []; //array for pano currently displays
+        
+        //css objects
+        var object1, object2;
+        
+        // Called when the pano images are loaded; should make startup smoother
+        function startExperience (){
+        init();     // to set up panos
+        animate();  // called each frame to rotate camera
+        }
+        
+                    
+        // initiatlize: two sets of pano images
+        function init() {
+            alert('0.29');
+            if (window.DeviceOrientationEvent) {
+              // your code
+              window.addEventListener('deviceorientation', capture_orientation, false);
+            } else {
+              alert('device orientation not supported');
+              // add fallback code here, as necessary
+            }
+
+            window.onorientationchange = readDeviceOrientation;
+
+            camera = new THREE.PerspectiveCamera( FOV, window.innerWidth / window.innerHeight, 1, 1000 );
+
+            scene = new THREE.Scene();
+
+
+            var sides1 = [
+                {
+                    url: 'resources/images/aYMCA_old_timey1.0001.png',
+                    position: new THREE.Vector3( -512, 0, 0 ),
+                    rotation: new THREE.Euler( 0, Math.PI / 2, 0 )
+                },
+                {
+                    url: 'resources/images/aYMCA_old_timey1.0003.png',
+                    position: new THREE.Vector3( 512, 0, 0 ),
+                    rotation: new THREE.Euler( 0, -Math.PI / 2, 0 )
+                },
+                {
+                    url: 'resources/images/aYMCA_old_timey1.0004.png',
+                    position: new THREE.Vector3( 0,  -512, 0 ),
+                    rotation: new THREE.Euler( -Math.PI / 2, 0, Math.PI )
+                },
+                {
+                    url: 'resources/images/aYMCA_old_timey1.0005.png',
+                    position: new THREE.Vector3( 0, 512, 0 ),
+                    rotation: new THREE.Euler( Math.PI / 2, 0, Math.PI )
+                },
+                {
+                    url: 'resources/images/aYMCA_old_timey1.0000.png',
+                    position: new THREE.Vector3( 0, 0,  512 ),
+                    rotation: new THREE.Euler( 0, Math.PI, 0 )
+                },
+                {
+                    url: 'resources/images/aYMCA_old_timey1.0002.png',
+                    position: new THREE.Vector3( 0, 0, -512 ),
+                    rotation: new THREE.Euler( 0, 0, 0 )
+                }
+            ];
+
+            // now create the Skybox and scale it to avoid collision with the divs
+            
+            var sc = new THREE.Object3D();
+            sc.scale.set(10.0, 10.0, 10.0);
+
+            for ( var i = 0; i < sides1.length; i ++ ) {
+
+                var side = sides1[ i ];
+
+                var element = document.createElement( 'img' );
+                element.width = 1026; // 2 pixels extra to close the gap.
+                element.src = side.url;  //this loads the image
+                elements.push(element);
+
+                object1 = new THREE.CSS3DObject( element );
+                object1.position = side.position;
+                object1.rotation = side.rotation;
+                scene.add( object1 );
+                
+            }   
+
+
+            var divXpos = document.createElement('div');
+            var divXneg = document.createElement('div');
+            var divYpos = document.createElement('div');
+            var divYneg = document.createElement('div');
+            var divZpos = document.createElement('div');
+            var divZneg = document.createElement('div');
+
+            var divCenten = document.createElement('div');
+            var divAqua = document.createElement('div');
+            var divCoca = document.createElement('div');
+            var divCNN = document.createElement('div');
+
+            // Put content in each one  (should do this as a couple of functions)
+            // for X
+            divXpos.id = "cssContent";
+            divXpos.style.width = "60px";
+            divXpos.style.height = "16px";
+            divXpos.style.backgroundColor = "red";
+            divXpos.style.position = 'absolute';
+            divXpos.style.fontSize = "16px";
+            divXpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
+            divXpos.innerText = "NORTH";
+
+            divXneg.id = "cssContent";
+            divXneg.style.width = "60px";
+            divXneg.style.height = "16px";
+            divXneg.style.backgroundColor = "red";
+            divXneg.style.position = 'absolute';
+            divXneg.style.fontSize = "16px";
+            divXneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
+            divXneg.innerText = "SOUTH";
+
+            // for Y
+            divYpos.id = "cssContent";
+            divYpos.style.width = "24px";
+            divYpos.style.height = "16px";
+            divYpos.style.backgroundColor = "blue";
+            divYpos.style.position = 'absolute';
+            divYpos.style.fontSize = "16px";
+            divYpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
+            divYpos.innerText = "UP";
+
+            divYneg.id = "cssContent";
+            divYneg.style.width = "48px";
+            divYneg.style.height = "16px";
+            divYneg.style.backgroundColor = "blue";
+            divYneg.style.position = 'absolute';
+            divYneg.style.fontSize = "16px";
+            divYneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
+            divYneg.innerText = "DOWN";
+
+            //for Z
+            divZpos.id = "cssContent";
+            divZpos.style.width = "48px";
+            divZpos.style.height = "16px";
+            divZpos.style.backgroundColor = "green";
+            divZpos.style.position = 'absolute';
+            divZpos.style.fontSize = "16px";
+            divZpos.style.WebkitTransform = "scale3d(-1, 1, 1)";
+            divZpos.innerText = "EAST";
+
+            divZneg.id = "cssContent";
+            divZneg.style.width = "48px";
+            divZneg.style.height = "16px";
+            divZneg.style.backgroundColor = "green";
+            divZneg.style.position = 'absolute';
+            divZneg.style.fontSize = "16px";
+            divZneg.style.WebkitTransform = "scale3d(-1, 1, 1)";
+            divZneg.innerText = "WEST";
+
+            divCenten.id = "cssPlace";
+            divCenten.innerHTML = "<a href='http://www.centennialpark.com/' target='_blank'>Centenial Olympic Park</a>";
+
+            divAqua.id = "cssPlace";
+            divAqua.style.width = "100px";
+            divAqua.style.height = "20px";
+            divAqua.innerHTML = "<a href='http://www.georgiaaquarium.org/' target='_blank'>Georgia Aquarium</a>";
+
+            divCoca.id = "cssPlace";
+            divCoca.style.width = "100px";
+            divCoca.style.height = "20px";
+            divCoca.innerHTML = "<a href='http://www.worldofcoca-cola.com/' target='_blank'>World of Coca Cola</a>";
+
+            divCNN.id = "cssPlace";
+            divCNN.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>CNN</a>";
+            
+
+            // create 6 CSS Objects in the scene graph
+            var cssObjectXpos;
+            var cssObjectXneg;
+            var cssObjectYpos;
+            var cssObjectYneg;
+            var cssObjectZpos;
+            var cssObjectZneg;
+
+            var cssObjectCenten;
+            var cssObjectAqua;
+            var cssObjectCoca;
+            var cssObjectCNN;
+
+            cssObjectXpos = new THREE.CSS3DObject(divXpos); 
+            cssObjectXneg = new THREE.CSS3DObject(divXneg);
+            cssObjectYpos = new THREE.CSS3DObject(divYpos); 
+            cssObjectYneg = new THREE.CSS3DObject(divYneg);                        
+            cssObjectZpos = new THREE.CSS3DObject(divZpos); 
+            cssObjectZneg = new THREE.CSS3DObject(divZneg);                        
+            cssObjectCenten = new THREE.CSS3DObject(divCenten);
+            cssObjectAqua = new THREE.CSS3DObject(divAqua);
+            cssObjectCoca = new THREE.CSS3DObject(divCoca);
+            cssObjectCNN = new THREE.CSS3DObject(divCNN);
+
+
+            // the width and height is used to align things.
+            cssObjectXpos.width = 100;
+            cssObjectXpos.height = 100;
+            cssObjectXpos.position.x = 200.0;
+            cssObjectXpos.position.y = 0.0;
+            cssObjectXpos.position.z = 0.0;     
+            cssObjectXpos.rotation.y = - Math.PI / 2;       
+
+            cssObjectXneg.width = 100;
+            cssObjectXneg.height = 100;
+            cssObjectXneg.position.x = -200.0;
+            cssObjectXneg.position.y = 0.0;
+            cssObjectXneg.position.z = 0.0;             
+            cssObjectXneg.rotation.y =  Math.PI / 2;        
+
+            // for Y
+            cssObjectYpos.width = 100;
+            cssObjectYpos.height = 100;
+            cssObjectYpos.position.x = 0.0;
+            cssObjectYpos.position.y = -200.0;
+            cssObjectYpos.position.z = 0.0;             
+            cssObjectYpos.rotation.x =  - Math.PI / 2;              
+
+            cssObjectYneg.width = 100;
+            cssObjectYneg.height = 100;
+            cssObjectYneg.position.x = 0.0;
+            cssObjectYneg.position.y = 200.0;
+            cssObjectYneg.position.z = 0.0;                 
+            cssObjectYneg.rotation.x = Math.PI / 2;             
+
+            // for Z                    
+            cssObjectZpos.width = 100;
+            cssObjectZpos.height = 100;
+            cssObjectZpos.position.x = 0.0;
+            cssObjectZpos.position.y = 0.0;
+            cssObjectZpos.position.z = 200.0;   
+            cssObjectZpos.rotation.y = Math.PI;         
+
+            cssObjectZneg.width = 100;
+            cssObjectZneg.height = 100;
+            cssObjectZneg.position.x = 0.0;
+            cssObjectZneg.position.y = 0.0;
+            cssObjectZneg.position.z = -200.0;  
+            //no rotation need for this one     
+
+            cssObjectCenten.width = 200;
+            cssObjectCenten.height = 12;
+            cssObjectCenten.position.x = -50.0;
+            cssObjectCenten.position.y = 75.0;
+            cssObjectCenten.position.z = 200.0; 
+            cssObjectCenten.rotation.y = Math.PI;
+            cssObjectCenten.rotation.x = 0;
+            cssObjectCenten.rotation.z = 0;
+
+            cssObjectAqua.width = 200;
+            cssObjectAqua.height = 12;
+            cssObjectAqua.position.x = 150.0;
+            cssObjectAqua.position.y = 20.0;
+            cssObjectAqua.position.z = -40.0;   
+            cssObjectAqua.rotation.y = - Math.PI / 2;
+
+            cssObjectCoca.width = 200;
+            cssObjectCoca.height = 12;
+            cssObjectCoca.position.x = 150.0;
+            cssObjectCoca.position.y = 25.0;
+            cssObjectCoca.position.z = 80.0;    
+            cssObjectCoca.rotation.y = - Math.PI / 2 - 0.3;
+
+            cssObjectCNN.width = 100;
+            cssObjectCNN.height = 100;
+            cssObjectCNN.position.x = -200.0;
+            cssObjectCNN.position.y = -15.0;
+            cssObjectCNN.position.z = 5.0;              
+            cssObjectCNN.rotation.y =  Math.PI / 2;
+
+
+            scene.add(cssObjectXpos);
+            scene.add(cssObjectXneg);
+            scene.add(cssObjectYpos);
+            scene.add(cssObjectYneg);
+            scene.add(cssObjectZpos);
+            scene.add(cssObjectZneg);
+            scene.add(cssObjectCNN);
+
+            scene.add(cssObjectCenten);
+            scene.add(cssObjectAqua);
+            scene.add(cssObjectCoca);
+
+
+            renderer = new THREE.CSS3DRenderer();
+            renderer.setSize( window.innerWidth, window.innerHeight );
+            document.body.appendChild( renderer.domElement );
+
+
+            document.addEventListener( 'mousedown', onDocumentMouseDown, false );
+
+            document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+            document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+
+            window.addEventListener( 'resize', onWindowResize, false );
+
+        }
+
+        function onWindowResize() {
+
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+
+            renderer.setSize( window.innerWidth, window.innerHeight );
+
+        }
+
+        var myFunctionVar; // used for the setInterval function in scrolling
+
+        function onDocumentMouseDown( event ) {
+            var centerX = window.innerWidth / 2; 
+            var centerY = window.innerHeight / 2;
+            var movementX = event.clientX || 0;
+            var movementY = event.clientY || 0;
+
+            event.preventDefault();
+            document.addEventListener( 'mouseup', onDocumentMouseUp, false );
+
+            movementX = movementX - centerX;
+            movementY = movementY - centerY;
+            
+            myFunctionVar = setInterval(function() { 
+                    if (Math.abs(movementX)>100) {
+                        if (movementX>0) {
+                            lon += .25;
+                            }
+                        else {
+                            lon -= .5;
+                            }
+                    };
+                    
+                    if (Math.abs(movementY)>100) {
+                    if (movementY>0) {
+                            lat -= 0.12;
+                            }
+                        else {
+                            lat += 0.12;
+                            }
+                    }
+            }, 10); 
+        }
+
+
+        function onDocumentMouseUp( event ) {
+            clearInterval(myFunctionVar);
+            document.removeEventListener( 'mouseup', onDocumentMouseUp );
+
+        }
+
+        var touchX, touchY; // used for scrolling in touch screen platforms
+
+        function onDocumentTouchStart( event ) {
+
+            // event.preventDefault();
+
+            var touch = event.touches[ 0 ];
+            
+            touchX = touch.screenX;
+            touchY = touch.screenY;
+        }
+
+        function onDocumentTouchMove( event ) {
+
+            event.preventDefault();
+
+            var touch = event.touches[ 0 ];
+
+            lon -= ( touch.screenX - touchX ) * 0.1;
+            lat += ( touch.screenY - touchY ) * 0.1;
+
+            touchX = touch.screenX;
+            touchY = touch.screenY;
+
+        }
+
+        function capture_orientation (event) {
+         alpha = event.alpha;
+         beta = event.beta;
+         gamma = event.gamma;
+         // alert('Orientation - Alpha: '+alpha+', Beta: '+beta+', Gamma: '+gamma);
+        }
+
+        function animate() {
+
+            requestAnimationFrame( animate );
+
+            // lon +=  DEGREEINC;
+            // degreecount += 1;
+            
+            // lat = Math.max( - 85, Math.min( 85, lat ) );
+            // lat += LATINC;
+
+            // phi = THREE.Math.degToRad( 90 - lat );
+            // theta = THREE.Math.degToRad( lon );
+            
+            if (isLandScape == 1) {
+
+                phi = THREE.Math.degToRad( 180 - gamma );
+                theta = - THREE.Math.degToRad( alpha + 180 );
+            } else {
+                phi = THREE.Math.degToRad( 90 - lat );
+                theta = THREE.Math.degToRad( lon );
+                // phi = THREE.Math.degToRad( 180 + beta );
+                // theta = - THREE.Math.degToRad( alpha + 180 );
+            }
+
+            // phi = beta;
+            // theta = gamma;
+
+            target.x = Math.sin( phi ) * Math.cos( theta );
+            target.y = Math.cos( phi );
+            target.z = Math.sin( phi ) * Math.sin( theta );
+
+            // alert("lookAt: " + target.x + " " + target.y + " " + target.z);
+
+            camera.lookAt( target );
+            // camera.lookAt(new THREE.Vector3(1, 0, 1));
+            renderer.render( scene, camera );
+
+        }
+
+        function readDeviceOrientation() {
+                    
+            if (Math.abs(window.orientation) === 90) {
+                // Landscape
+                console.log("LANDSCAPE");
+                isLandScape = 1;
+            } else {
+                // Portrait
+                console.log("PORTRAIT");
+                isLandScape = 0;
+            }
+        }
+
+
+                   
+    </script>
+                
 </body>
 </html>
