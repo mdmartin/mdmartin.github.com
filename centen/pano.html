@@ -58,8 +58,6 @@
                 // Landscape
                 console.log("LANDSCAPE");
                 isLandScape = 1;
-                capture_orientation();
-                alpha = (alpha + 90) % 360;
             } else {
                 // Portrait
                 console.log("PORTRAIT");
@@ -350,7 +348,7 @@
             cssObjectCenten.rotation.x = 0;
             cssObjectCenten.rotation.z = 0;
 
-            alert('0.60');
+            alert('0.61');
 
             cssObjectAqua.width = 200;
             cssObjectAqua.height = 12;
@@ -479,7 +477,7 @@
         }
 
         function capture_orientation (event) {
-             alpha = event.alpha;
+             alpha = (event.alpha + 90) % 360;
              beta = event.beta;
              gamma = event.gamma;
          // alert('Orientation - Alpha: '+alpha+', Beta: '+beta+', Gamma: '+gamma);
