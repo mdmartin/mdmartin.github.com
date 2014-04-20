@@ -72,7 +72,7 @@
 						
 			// initiatlize: two sets of pano images
 			function init() {
-				alert('0.17');
+				alert('0.18');
 				if (window.DeviceOrientationEvent) {
 				  // your code
 				  window.addEventListener('deviceorientation', capture_orientation, false);
@@ -80,6 +80,8 @@
 				  alert('device orientation not supported');
 				  // add fallback code here, as necessary
 				}
+
+				window.onorientationchange = readDeviceOrientation;
 
 				camera = new THREE.PerspectiveCamera( FOV, window.innerWidth / window.innerHeight, 1, 1000 );
 
@@ -470,6 +472,19 @@
 				renderer.render( scene, camera );
 
 			}
+
+			function readDeviceOrientation() {
+                 		
+			    if (Math.abs(window.orientation) === 90) {
+			        // Landscape
+			        console.log("LANDSCAPE");
+			    } else {
+			    	// Portrait
+			    	console.log("PORTRAIT");
+			    }
+			}
+
+
                        
 		</script>
 				
