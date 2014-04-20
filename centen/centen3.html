@@ -41,8 +41,12 @@
 	<body onload="startExperience()">
 		<script src="three61.min.js"></script>
 		<script src="CSS3D61Renderer.js"></script>
+		<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 		<script>
 
+			$(window).on("orientationchange",function(){
+			  alert("The orientation has changed!");
+			});
 			var alpha, gamma, beta;
 			var camera, scene, renderer;
 			var target = new THREE.Vector3();
@@ -72,7 +76,7 @@
 						
 			// initiatlize: two sets of pano images
 			function init() {
-				alert('0.18');
+				alert('0.19');
 				if (window.DeviceOrientationEvent) {
 				  // your code
 				  window.addEventListener('deviceorientation', capture_orientation, false);
