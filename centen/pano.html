@@ -43,6 +43,9 @@
     </style>
 </head>
 <body onload="startExperience()">
+    <div data-role="popup" id="popupAbAve">
+        <p>This is Auburn Ave.</p>
+    </div>
     <script src="three61.min.js"></script>
     <script src="CSS3D61Renderer.js"></script>
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -244,7 +247,9 @@
             divAqua.id = "divMarker";
             // divAqua.style.width = "100px";
             // divAqua.style.height = "20px";
-            divAqua.innerHTML = "<img src='./resources/icon/road.png'></img>";
+            divAqua.innerHTML = "<a href='#popupAbAve' data-rel='popup' data-role='button' data-inline='true' data-transition='pop'><img src='./resources/icon/road.png'></img>";
+
+
 
             divCoca.id = "cssPlace";
             divCoca.style.width = "100px";
@@ -335,7 +340,7 @@
             cssObjectCenten.rotation.x = 0;
             cssObjectCenten.rotation.z = 0;
 
-            alert('0.50');
+            alert('0.51');
 
             cssObjectAqua.width = 200;
             cssObjectAqua.height = 12;
