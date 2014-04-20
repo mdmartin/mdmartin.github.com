@@ -16,26 +16,30 @@
                 overflow: hidden;
             }
 
-            a {
-                color: #ffffff;
-            }
+        a {
+            color: #ffffff;
+        }
 
-            #cssContent {
-                opacity: 0.4;
-                border-radius: 3px;
-            }
+        #cssContent {
+            opacity: 0.4;
+            border-radius: 3px;
+        }
 
-            #cssPlace {
-                opacity: 0.5;
-                /*background-color: #000000;*/
-                font-size: 10px;
-                color: #ffffff;
-                text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-                font-family: helvetica;
-                width: 180;
-                height: 10;
-                position: absolute;
-            }
+        #cssPlace {
+            opacity: 0.5;
+            /*background-color: #000000;*/
+            font-size: 10px;
+            color: #ffffff;
+            text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+            font-family: helvetica;
+            width: 180;
+            height: 10;
+            position: absolute;
+        }
+
+        #divMarker {
+            background-color: transparent;
+        }
     </style>
 </head>
 <body onload="startExperience()">
@@ -246,7 +250,8 @@
             divCoca.innerHTML = "<a href='http://www.worldofcoca-cola.com/' target='_blank'>World of Coca Cola</a>";
 
             divCNN.id = "cssPlace";
-            divCNN.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>CNN</a>";
+            // divCNN.innerHTML = "<a href='http://www.cnn.com/tour/' target='_blank'>CNN</a>";
+            divCNN.innerHTML = "<img src='./resources/icon/rockhouse.png'></img>"
             
 
             // create 6 CSS Objects in the scene graph
