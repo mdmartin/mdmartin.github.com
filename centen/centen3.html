@@ -50,9 +50,9 @@
 				screen.lockOrientation('landscape');
 			})
 
-			$(window).on("orientationchange",function(){
-			  alert("The orientation has changed!");
-			});
+			// $(window).on("orientationchange",function(){
+			//   alert("The orientation has changed!");
+			// });
 			var alpha, gamma, beta;
 			var camera, scene, renderer;
 			var target = new THREE.Vector3();
@@ -82,7 +82,7 @@
 						
 			// initiatlize: two sets of pano images
 			function init() {
-				alert('0.21');
+				alert('0.22');
 				if (window.DeviceOrientationEvent) {
 				  // your code
 				  window.addEventListener('deviceorientation', capture_orientation, false);
@@ -469,8 +469,8 @@
 					phi = THREE.Math.degToRad( 180 - gamma );
 					theta = - THREE.Math.degToRad( alpha + 180 );
 				} else {
-					phi = THREE.Math.degToRad( 90 - lat );
-					theta = THREE.Math.degToRad( lon );
+					phi = THREE.Math.degToRad( 180 - beta );
+					theta = - THREE.Math.degToRad( alpha + 180 );
 				}
 
 				// phi = beta;
